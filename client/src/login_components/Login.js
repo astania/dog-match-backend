@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 const Login = ({ onLogin }) => {
     const [username, setUsername] = useState("")
+    console.log("frontend username:", username)
 
     function handleSubmit(e){
         e.preventDefault()
@@ -15,7 +16,7 @@ const Login = ({ onLogin }) => {
             body: JSON.stringify({ username }),
         })
             .then(r => r.json())
-            .then(user => onLogin(user))
+            .then(userInfo => onLogin(userInfo))
     }
   return (
     <div>
