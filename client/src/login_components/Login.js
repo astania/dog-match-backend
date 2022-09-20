@@ -1,30 +1,25 @@
 import React from 'react'
 import { useState } from 'react'
+import LoginForm from './LoginForm'
+import SignUpForm from './SignUpForm'
 
 const Login = ({ onLogin }) => {
     const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [passwordConfirmation, setPasswordConfirmation] = useState("")
+
+    const [newUser, setNewUser] = useState(false)
+
     console.log("frontend username:", username)
 
-    function handleSubmit(e){
-        e.preventDefault()
-
-        fetch("/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username }),
-        })
-            .then(r => r.json())
-            .then(userInfo => onLogin(userInfo))
-    }
+    
   return (
     <div>
-        <h2>Login to </h2>
-        <form onSubmit={handleSubmit}>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-            <button type="submit">Login</button>
-        </form>
+        <h2>Welcome to Dog Match! </h2>
+        {newUser ? <SignUpForm username={username} setUsername={setUsername} password={password} setPassword={setPassword} onLogin={onLogin} setNewUser={setNewUser}/> 
+        : <LoginForm username={username} setUsername={setUsername} password={password} setPassword={setPassword} onLogin={onLogin} setNewUser={setNewUser}/> }
+        
+        
     </div>
     
 
