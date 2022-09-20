@@ -1,19 +1,29 @@
 import React from 'react'
+import { useState } from 'react'
 
 const SignUpForm = ({ username, password, setUsername, setPassword, setNewUser, onLogin}) => {
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [passwordConfirmed, setPasswordConfirmed] = useState(false)
 
     function handleSubmit(e) {
         e.preventDefault()
 
-        fetch("/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username }),
-        })
-            .then(r => r.json())
-            .then(userInfo => onLogin(userInfo))
+        const user = {
+            username,
+            password
+        }
+        if (passwordConfirmed){
+            fetch("/users", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+            })
+                .then(r => r.json())
+                .then(userInfo => onLogin(userInfo))
+        } 
+        
     }
 
     return (
@@ -27,8 +37,12 @@ const SignUpForm = ({ username, password, setUsername, setPassword, setNewUser, 
                 <label> Password
                     <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
+                <label> Confirm Password
+                    <input type="text" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                </label>
+                {password === confirmPassword ? () => setPasswordConfirmed(true) : <p>password must match</p>}
 
-                <button type="submit" value="Login">Login</button>
+                <button type="submit" value="Login">Create Account</button>
             </form>
             <h4>Already have an account?</h4>
             <button onClick={() => setNewUser(false)}>Login</button>

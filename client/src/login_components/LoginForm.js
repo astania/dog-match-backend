@@ -1,16 +1,21 @@
 import React from 'react'
 
 const LoginForm = ({ username, setUsername, password, setPassword, onLogin, setNewUser }) => {
-    
+
     function handleSubmit(e) {
         e.preventDefault()
+
+        const user = {
+            username,
+            password
+        }
 
         fetch("/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ username }),
+            body: JSON.stringify({ user }),
         })
             .then(r => r.json())
             .then(userInfo => onLogin(userInfo))
