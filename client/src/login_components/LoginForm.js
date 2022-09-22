@@ -17,8 +17,15 @@ const LoginForm = ({ username, setUsername, password, setPassword, onLogin, setN
             },
             body: JSON.stringify({ user }),
         })
-            .then(r => r.json())
-            .then(userInfo => onLogin(userInfo))
+            .then(res => {
+                if (res.ok) {
+                    res.json().then(userInfo => onLogin(userInfo))
+                } else {
+                    // res.json().then( e => setErrors(Object.entries(e.error).flat()))
+                    // res.json().then( e => console.log("Errors:", e))
+                    console.log("error")
+                }
+            })
     }
 
 
