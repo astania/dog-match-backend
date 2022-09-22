@@ -12,6 +12,8 @@ const SignUpForm = ({ setNewUser, onLogin }) => {
         aboutMe: "",
         profilePic: ""
     }
+
+    console.log("checking")
     const [userInput, setUserInput] = useState(blankUserTemplate)
 
     const handleChange = (e) => {
