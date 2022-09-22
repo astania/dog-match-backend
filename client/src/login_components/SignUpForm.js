@@ -1,29 +1,39 @@
 import React from 'react'
 import { useState } from 'react'
 
-const SignUpForm = ({ username, password, setUsername, setPassword, setNewUser, onLogin }) => {
+const SignUpForm = ({ onLogin }) => {
     const [confirmPassword, setConfirmPassword] = useState("")
     const [passwordDoesNotMatch, setPasswordDoesNotMatch] = useState(false)
+    const blankUserTemplate = {
+        username: "", 
+        password: "", 
+        firstName: "",
+        lastName: "",
+        aboutMe: "",
+        profilePic: ""
+    }
+    const [newUser, setNewUser] = useState(blankUserTemplate)
 
+    const handleChange = (e) => {
+        const value = e.target.value
+        const name = e.target.name 
+
+        setNewUser({
+            ...newUser, [name]: value
+        })
+    }
+    
     function handleSubmit(e) {
         e.preventDefault()
-
-        const user = {
-            username,
-            password
-        }
-        
-        console.log("user from signup form", user)
-
-        if (password === confirmPassword) {
+        console.log("new user", newUser)
+        if (newUser.password === confirmPassword) {
             setPasswordDoesNotMatch(false)
-            console.log("sending fetch")
             fetch("/users", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(user),
+                body: JSON.stringify(newUser),
             })
                 .then(res => {
                     if (res.ok) {
@@ -44,16 +54,28 @@ const SignUpForm = ({ username, password, setUsername, setPassword, setNewUser, 
         <div>
             <h4>Create an account:</h4>
             <form onSubmit={handleSubmit}>
-                <label> Username
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <label> Username:
+                    <input type="text" name="username" value={newUser.username} onChange={handleChange} />
                 </label>
-                <label> Password
-                    <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <label> Password:
+                    <input type="text" name="password" value={newUser.password} onChange={handleChange} />
                 </label>
-                <label> Confirm Password
+                <label> Confirm Password:
                     <input type="text" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                 </label>
                 {passwordDoesNotMatch ? <p>password must match</p> : ""}
+                <label> First Name:
+                    <input type="text" name="firstName" value={newUser.firstName} onChange={handleChange} />
+                </label>
+                <label> Last Name:
+                    <input type="text" name="lastName" value={newUser.lastName} onChange={handleChange} />
+                </label>
+                <label> About Me:
+                    <input type="text" name="aboutMe" value={newUser.aboutMe} onChange={handleChange} />
+                </label>
+                <label> Profile Pic URL:
+                    <input type="text" name="profilePic" value={newUser.profilePic} onChange={handleChange} />
+                </label>
 
                 <button type="submit" value="Login">Create Account</button>
             </form>
