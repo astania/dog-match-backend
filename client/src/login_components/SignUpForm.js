@@ -7,15 +7,14 @@ const SignUpForm = ({ username, password, setUsername, setPassword, setNewUser, 
 
     function handleSubmit(e) {
         e.preventDefault()
-        
 
         const user = {
             username,
             password
         }
-
-        console.log("user from signup form", user)
         
+        console.log("user from signup form", user)
+
         if (password === confirmPassword) {
             setPasswordDoesNotMatch(false)
             console.log("sending fetch")
@@ -27,7 +26,7 @@ const SignUpForm = ({ username, password, setUsername, setPassword, setNewUser, 
                 body: JSON.stringify(user),
             })
                 .then(res => {
-                    if(res.ok){
+                    if (res.ok) {
                         res.json().then(userInfo => onLogin(userInfo))
                     } else {
                         // res.json().then( e => setErrors(Object.entries(e.error).flat()))
@@ -35,7 +34,7 @@ const SignUpForm = ({ username, password, setUsername, setPassword, setNewUser, 
                         console.log("error")
                     }
                 })
-            
+
         } else {
             setPasswordDoesNotMatch(true)
         }
@@ -54,7 +53,7 @@ const SignUpForm = ({ username, password, setUsername, setPassword, setNewUser, 
                 <label> Confirm Password
                     <input type="text" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                 </label>
-                {passwordDoesNotMatch ? <p>password must match</p> : "" }
+                {passwordDoesNotMatch ? <p>password must match</p> : ""}
 
                 <button type="submit" value="Login">Create Account</button>
             </form>

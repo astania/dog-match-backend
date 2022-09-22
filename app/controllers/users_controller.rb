@@ -1,14 +1,26 @@
 class UsersController < ApplicationController
   wrap_parameters format: []
-rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+  skip_before_action :authorized, only: :create
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-  def create 
-    user = User.create!(user_params)
+  def create
+    user = User.create(user_params)
+    if user.valid?
+      session[:user_id] = user.id
+      render json: user, status: :created
+    end
+  end
 
-    render json: user
+
+
+  # def create 
+  #   user = User.create!(user_params)
+
+
+  #   render json: user
     
   
-  end 
+  # end 
   
   def show
     user = User.find_by(id: session[:user_id])
