@@ -10,8 +10,7 @@ const LoginForm = ({ onLogin, setIsNewUser }) => {
 
     function handleSubmit(e) {
         e.preventDefault()
-
-
+        
         fetch("/login", {
             method: "POST",
             headers: {

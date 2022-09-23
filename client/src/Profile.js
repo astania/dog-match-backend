@@ -1,12 +1,14 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Profile = ({ user, onLogout }) => {
+    const navigate = useNavigate()
     console.log(user)
 
     const handleLogout = () => {
         fetch("/logout", {
             method: "DELETE",
-        }).then(() => onLogout(user))
+        }).then(() => onLogout(user)).then(navigate("/login"))
     }
 
     return (
