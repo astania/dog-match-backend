@@ -3,21 +3,19 @@ import { useState } from 'react'
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 
-const Login = ({ onLogin }) => {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [passwordConfirmation, setPasswordConfirmation] = useState("")
+const Login = ({ onLogin, user }) => {
+    // const [username, setUsername] = useState("")
+    // const [password, setPassword] = useState("")
+    // const [passwordConfirmation, setPasswordConfirmation] = useState("")
 
-    const [newUser, setNewUser] = useState(false)
-
-    console.log("frontend username:", username)
+    const [isNewUser, setIsNewUser] = useState(false)
 
     
   return (
     <div>
         <h2>Welcome to Dog Match! </h2>
-        {newUser ? <SignUpForm username={username} setUsername={setUsername} password={password} setPassword={setPassword} onLogin={onLogin} setNewUser={setNewUser}/> 
-        : <LoginForm username={username} setUsername={setUsername} password={password} setPassword={setPassword} onLogin={onLogin} setNewUser={setNewUser}/> }
+        {isNewUser ? <SignUpForm onLogin={onLogin} setIsNewUser={setIsNewUser}/> 
+        : <LoginForm user={user} onLogin={onLogin} setIsNewUser={setIsNewUser}/> }
         
         
     </div>

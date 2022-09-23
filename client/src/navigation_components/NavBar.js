@@ -12,7 +12,6 @@ const activeStyle = {
     width: "60%",
     margin: "5% 0 1%",
     padding: "1em",
-    textDecoration: "none",
     color: "black",
     fontWeight: "bold",
     verticalAlign: "center",
@@ -28,8 +27,12 @@ const NavBar = () => {
             >Home</NavLink>
             <NavLink
             style={({ isActive }) => isActive ? activeStyle : style}
-                to="/Dogs"
+                to="/dogs"
             >Dogs</NavLink>
+            <NavLink
+            style={({ isActive }) => isActive ? activeStyle : style}
+                to="/profile"
+            >Profile</NavLink>
             
         </div>
     )

@@ -1,19 +1,18 @@
 import React from 'react'
 import { useState } from 'react'
 
-const SignUpForm = ({ setNewUser, onLogin }) => {
+const SignUpForm = ({ setIsNewUser, onLogin }) => {
     const [confirmPassword, setConfirmPassword] = useState("")
     const [passwordDoesNotMatch, setPasswordDoesNotMatch] = useState(false)
     const blankUserTemplate = {
         username: "",
         password: "",
-        firstName: "",
-        lastName: "",
-        aboutMe: "",
-        profilePic: ""
+        first_name: "",
+        last_name: "",
+        about_me: "",
+        profile_pic: ""
     }
 
-    console.log("checking")
     const [userInput, setUserInput] = useState(blankUserTemplate)
 
     const handleChange = (e) => {
@@ -67,22 +66,22 @@ const SignUpForm = ({ setNewUser, onLogin }) => {
                 </label>
                 {passwordDoesNotMatch ? <p>password must match</p> : ""}
                 <label> First Name:
-                    <input type="text" name="firstName" value={userInput.firstName} onChange={handleChange} />
+                    <input type="text" name="first_name" value={userInput.first_name} onChange={handleChange} />
                 </label>
                 <label> Last Name:
-                    <input type="text" name="lastName" value={userInput.lastName} onChange={handleChange} />
+                    <input type="text" name="last_name" value={userInput.last_name} onChange={handleChange} />
                 </label>
                 <label> About Me:
-                    <input type="text" name="aboutMe" value={userInput.aboutMe} onChange={handleChange} />
+                    <input type="text" name="about_me" value={userInput.about_me} onChange={handleChange} />
                 </label>
                 <label> Profile Pic URL:
-                    <input type="text" name="profilePic" value={userInput.profilePic} onChange={handleChange} />
+                    <input type="text" name="profile_pic" value={userInput.profile_pic} onChange={handleChange} />
                 </label>
 
                 <button type="submit" value="Login">Create Account</button>
             </form>
             <h4>Already have an account?</h4>
-            <button onClick={() => setNewUser(false)}>Login</button>
+            <button onClick={() => setIsNewUser(false)}>Login</button>
         </div>
     )
 }

@@ -1,18 +1,15 @@
 import React from 'react'
+import NavBar from '../navigation_components/NavBar'
 
-const WelcomePage = ({user, onLogout}) => {
+const WelcomePage = ({user}) => {
   
-  const handleLogout = () => {
-    fetch("/logout", {
-      method: "DELETE",
-    }).then(() => onLogout())
-  }
+  
  
 
   return (
     <div>
+      <NavBar />
       <h2>Welcome, {user.username}!</h2>
-      <button onClick={handleLogout}>Logout</button>
       
       </div>
   )

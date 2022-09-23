@@ -1,21 +1,23 @@
 import React from 'react'
+import { useState } from 'react'
 
-const LoginForm = ({ username, setUsername, password, setPassword, onLogin, setNewUser }) => {
+const LoginForm = ({ onLogin, setIsNewUser }) => {
+    const [logInInput, setLogInInput] = useState({
+        username: "",
+        password: ""
+    }) 
+
 
     function handleSubmit(e) {
         e.preventDefault()
 
-        const user = {
-            username,
-            password
-        }
 
         fetch("/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ user }),
+            body: JSON.stringify({ logInInput }),
         })
             .then(res => {
                 if (res.ok) {
@@ -28,6 +30,15 @@ const LoginForm = ({ username, setUsername, password, setPassword, onLogin, setN
             })
     }
 
+    const handleChange = (e) => {
+        const value = e.target.value
+        const name = e.target.name
+        
+        setLogInInput({
+            ...logInInput, [name]: value
+        })
+    }
+
 
     return (
         <div>
@@ -35,16 +46,16 @@ const LoginForm = ({ username, setUsername, password, setPassword, onLogin, setN
 
             <form onSubmit={handleSubmit}>
                 <label> Username
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input type="text" name="username" value={logInInput.username} onChange={handleChange} />
                 </label>
                 <label> Password
-                    <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="text" name="password" value={logInInput.password} onChange={handleChange} />
                 </label>
 
                 <button type="submit" value="Login">Login</button>
             </form>
             <h4>Are you new here? Create an account below:</h4>
-            <button onClick={() => setNewUser(true)}>Create Account</button>
+            <button onClick={() => setIsNewUser(true)}>Create Account</button>
 
         </div>
     )
