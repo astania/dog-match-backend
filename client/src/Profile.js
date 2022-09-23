@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const Profile = ({ user, onLogout }) => {
     const navigate = useNavigate()
@@ -11,12 +11,23 @@ const Profile = ({ user, onLogout }) => {
         }).then(() => onLogout(user)).then(navigate("/login"))
     }
 
-    return (
-        <div>
-            <h3>{user.first_name} {user.last_name}</h3>
-            <button onClick={handleLogout}>Logout</button>
-        </div>
-    )
+    if (user.first_name){
+        return (
+        
+            <div>
+                <h3>{user.first_name} {user.last_name}</h3>
+                <button onClick={handleLogout}>Logout</button>
+            </div>
+        )
+    } else{
+        return (
+            <div>
+                <h1>Oops!</h1>
+                <Link to={"/login"}>Click here to log in</Link>
+                </div>
+        )
+    }
+    
 }
 
 export default Profile
