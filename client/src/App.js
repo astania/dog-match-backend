@@ -5,6 +5,7 @@ import WelcomePage from "./login_components/WelcomePage";
 import Footer from "./navigation_components/Footer";
 import Header from "./navigation_components/Header";
 import Profile from "./Profile";
+import NavBar from "./navigation_components/NavBar";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
+      {loggedIn ? <NavBar /> : ""}
       <Routes>
         <Route exact path="/" element={loggedIn ? <WelcomePage user={user} onLogout={onLogout} /> : <Login user={user} onLogin={onLogin} />} />
         <Route exact path="/login" element={<Login onLogin={onLogin} />} />

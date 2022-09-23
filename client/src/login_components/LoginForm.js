@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 
 const LoginForm = ({ onLogin, setIsNewUser }) => {
-    const [logInInput, setLogInInput] = useState({
+    const [user, setUser] = useState({
         username: "",
         password: ""
     }) 
@@ -17,7 +17,7 @@ const LoginForm = ({ onLogin, setIsNewUser }) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ logInInput }),
+            body: JSON.stringify({ user }),
         })
             .then(res => {
                 if (res.ok) {
@@ -34,8 +34,8 @@ const LoginForm = ({ onLogin, setIsNewUser }) => {
         const value = e.target.value
         const name = e.target.name
         
-        setLogInInput({
-            ...logInInput, [name]: value
+        setUser({
+            ...user, [name]: value
         })
     }
 
@@ -46,10 +46,10 @@ const LoginForm = ({ onLogin, setIsNewUser }) => {
 
             <form onSubmit={handleSubmit}>
                 <label> Username
-                    <input type="text" name="username" value={logInInput.username} onChange={handleChange} />
+                    <input type="text" name="username" value={user.username} onChange={handleChange} />
                 </label>
                 <label> Password
-                    <input type="text" name="password" value={logInInput.password} onChange={handleChange} />
+                    <input type="text" name="password" value={user.password} onChange={handleChange} />
                 </label>
 
                 <button type="submit" value="Login">Login</button>

@@ -6,7 +6,7 @@ const Profile = ({ user, onLogout }) => {
     const handleLogout = () => {
         fetch("/logout", {
             method: "DELETE",
-        }).then(() => onLogout())
+        }).then(() => onLogout(user))
     }
 
     return (
