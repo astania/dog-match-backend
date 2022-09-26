@@ -16,7 +16,7 @@ const Profile = ({ user, onLogout, setUser, onLogin }) => {
 
     const handleEditClick = () => {
         setToggleEdit(!toggleEdit)
-        console.log(toggleEdit)
+        // console.log(toggleEdit)
     }
 
     if (user.first_name) {
@@ -28,7 +28,7 @@ const Profile = ({ user, onLogout, setUser, onLogin }) => {
                 <h5>Bio:</h5>
                 <p>{user.about_me}</p>
                 <Button onClick={handleEditClick}>{toggleEdit ? "x" : "edit profile"}</Button>
-                {toggleEdit ? <ProfileEditForm user={user} setUser={setUser} onLogin={onLogin}/> : ""}
+                {toggleEdit ? <ProfileEditForm user={user} setUser={setUser} onLogin={onLogin} setToggleEdit={setToggleEdit} /> : ""}
                 <Button onClick={handleLogout}>Logout</Button>
             </div>
         )

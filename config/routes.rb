@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   
   get '/me', to: 'users#show'
   
+  patch '/me', to: 'users#update'
+  # patch '/me', to: 'users#update'
 
   get '*path',
       to: 'fallback#index',
