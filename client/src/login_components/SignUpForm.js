@@ -72,7 +72,8 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
                     <input type="text" name="last_name" value={userInput.last_name} onChange={handleChange} />
                 </label>
                 <label> About Me:
-                    <input type="text" name="about_me" value={userInput.about_me} onChange={handleChange} />
+                    {/* <input type="text" name="about_me" value={user.about_me} onChange={handleChange} /> */}
+                    <textarea name="about_me" rows="4" cols="50" value={userInput.about_me} onChange={handleChange}></textarea>
                 </label>
                 <label> Profile Pic URL:
                     <input type="text" name="profile_pic" value={userInput.profile_pic} onChange={handleChange} />

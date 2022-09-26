@@ -4,7 +4,7 @@ import Login from "./login_components/Login";
 import WelcomePage from "./login_components/WelcomePage";
 import Footer from "./navigation_components/Footer";
 import Header from "./navigation_components/Header";
-import Profile from "./Profile";
+import Profile from "./profile_components/Profile";
 import NavBar from "./navigation_components/NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -41,7 +41,7 @@ function App() {
         <Route exact path="/" element={loggedIn ? <WelcomePage user={user} onLogout={onLogout} /> : <Login user={user} onLogin={onLogin} />} />
         <Route exact path="/login" element={<Login onLogin={onLogin} />} />
         <Route exact path="/testing" element={<h1>Test Route</h1>} />
-        <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} />} />
+        <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} />} />
       </Routes>
       <Footer />
     </BrowserRouter>
