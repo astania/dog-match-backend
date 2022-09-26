@@ -6,7 +6,7 @@ import Footer from "./navigation_components/Footer";
 import Header from "./navigation_components/Header";
 import Profile from "./Profile";
 import NavBar from "./navigation_components/NavBar";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 

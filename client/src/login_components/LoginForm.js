@@ -6,11 +6,11 @@ const LoginForm = ({ onLogin, setIsNewUser }) => {
         username: "",
         password: ""
     }) 
-
+   
 
     function handleSubmit(e) {
         e.preventDefault()
-        
+
         fetch("/login", {
             method: "POST",
             headers: {
