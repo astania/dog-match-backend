@@ -11,7 +11,7 @@ const Profile = ({ user, onLogout, setUser, onLogin }) => {
     const handleLogout = () => {
         fetch("/logout", {
             method: "DELETE",
-        }).then(() => onLogout(user)).then(navigate("/login"))
+        }).then(() => onLogout(user)).then(navigate("/"))
     }
 
     const handleEditClick = () => {

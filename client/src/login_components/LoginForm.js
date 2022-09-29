@@ -1,11 +1,11 @@
 import React from 'react'
-import { useState } from 'react'
+// import { useState } from 'react'
 
-const LoginForm = ({ onLogin, setIsNewUser }) => {
-    const [user, setUser] = useState({
-        username: "",
-        password: ""
-    }) 
+const LoginForm = ({ onLogin, setIsNewUser, user, setUser }) => {
+    // const [user, setUser] = useState({
+    //     username: "",
+    //     password: ""
+    // }) 
    
 
     function handleSubmit(e) {
