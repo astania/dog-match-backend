@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :dogs, only: [:create, :show]
 
   resources :users, only: [:create]
 
