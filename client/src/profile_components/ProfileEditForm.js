@@ -1,11 +1,11 @@
 import { React, useState } from 'react'
 
 const ProfileEditForm = ({ user, onLogin, setToggleEdit }) => {
-    const [confirmPassword, setConfirmPassword] = useState("")
-    const [passwordDoesNotMatch, setPasswordDoesNotMatch] = useState(false)
+    // const [confirmPassword, setConfirmPassword] = useState("")
+    // const [passwordDoesNotMatch, setPasswordDoesNotMatch] = useState(false)
     const [updatedUser, setUpdatedUser] = useState(user)
 
-    console.log("updated user", updatedUser)
+    // console.log("updated user", updatedUser)
 
     const handleChange = (e) => {
         const value = e.target.value
@@ -18,35 +18,31 @@ const ProfileEditForm = ({ user, onLogin, setToggleEdit }) => {
 
     function handleSubmit(e) {
         e.preventDefault()
-        // console.log("user", user)
-        if (updatedUser.password === confirmPassword) {
-            setPasswordDoesNotMatch(false)
-            fetch('me', {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(updatedUser),
-            })
-                .then(res => {
-                    if (res.ok) {
-                        res.json().then(userInfo => onLogin(userInfo))
-                        
-                    } else {
-                        // res.json().then( e => setErrors(Object.entries(e.error).flat()))
-                        // res.json().then( e => console.log("Errors:", e))
-                        console.log("error")
-                    }
-                })
+        console.log(updatedUser)
+        fetch(`/users/${updatedUser.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedUser),
+        })
+            .then(res => {
+                if (res.ok) {
+                    res.json().then(userInfo => onLogin(userInfo)).then(setToggleEdit(false))
 
-        } else {
-            setPasswordDoesNotMatch(true)
-        }
+                } else {
+                    // res.json().then( e => setErrors(Object.entries(e.error).flat()))
+                    // res.json().then( e => console.log("Errors:", e))
+                    console.log("error")
+                }
+            })
     }
+
+
 
     return (
         <div>
-            <h4>Create an account:</h4>
+            <h4>Update your account:</h4>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="username"> Username:
@@ -54,16 +50,9 @@ const ProfileEditForm = ({ user, onLogin, setToggleEdit }) => {
                     </label>
                 </div>
                 <div className="form-group">
-                <label htmlFor="password"> Password:
-                    <input className="form-control" id="password" type="text" name="password" value={updatedUser.password} onChange={handleChange} />
-                </label>
-                <label htmlFor="confirmPassword" > Confirm Password:
-                    <input className="form-control" id="confirmPassword" type="text" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                </label>
-                {passwordDoesNotMatch ? <p>password must match</p> : ""}
-                <label htmlFor="first_name"> First Name:
-                    <input className="form-control" id="first_name" type="text" name="first_name" value={updatedUser.first_name} onChange={handleChange} />
-                </label>
+                    <label htmlFor="first_name"> First Name:
+                        <input className="form-control" id="first_name" type="text" name="first_name" value={updatedUser.first_name} onChange={handleChange} />
+                    </label>
                 </div>
                 <label htmlFor="last_name"> Last Name:
                     <input className="form-control" id="last_name" type="text" name="last_name" value={updatedUser.last_name} onChange={handleChange} />
@@ -84,3 +73,36 @@ const ProfileEditForm = ({ user, onLogin, setToggleEdit }) => {
 }
 
 export default ProfileEditForm
+
+
+
+
+
+
+    // function handleSubmit(e) {
+    //     e.preventDefault()
+    //     console.log(updatedUser)
+    //     if (updatedUser.password === confirmPassword) {
+    //         setPasswordDoesNotMatch(false)
+    //         fetch(`/users/${updatedUser.id}`, {
+    //             method: "PATCH",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify(updatedUser),
+    //         })
+    //             .then(res => {
+    //                 if (res.ok) {
+    //                     res.json().then(userInfo => onLogin(userInfo))
+
+    //                 } else {
+    //                     // res.json().then( e => setErrors(Object.entries(e.error).flat()))
+    //                     // res.json().then( e => console.log("Errors:", e))
+    //                     console.log("error")
+    //                 }
+    //             })
+
+    //     } else {
+    //         setPasswordDoesNotMatch(true)
+    //     }
+    // }
