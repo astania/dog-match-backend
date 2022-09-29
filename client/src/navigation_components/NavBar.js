@@ -27,7 +27,7 @@ const NavBar = () => {
             >Home</NavLink>
             <NavLink
             style={({ isActive }) => isActive ? activeStyle : style}
-                to="/dogs"
+                to="/alldogs"
             >Dogs</NavLink>
             <NavLink
             style={({ isActive }) => isActive ? activeStyle : style}

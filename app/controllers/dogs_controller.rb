@@ -3,6 +3,11 @@ class DogsController < ApplicationController
   skip_before_action :authorized, only: :create
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
+  def index 
+    dogs = Dog.all 
+    render json: dogs
+  end 
+  
   def create
     dog = Dog.create(dog_params)
     if dog.valid?

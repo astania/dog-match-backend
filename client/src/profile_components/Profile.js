@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import ProfileEditForm from './ProfileEditForm'
-import DogContainer from '../dog_components/DogContainer'
+import DogContainer from '../user_dog_components/DogContainer'
 
 
 const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser }) => {

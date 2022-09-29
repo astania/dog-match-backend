@@ -7,6 +7,7 @@ import Header from "./navigation_components/Header";
 import Profile from "./profile_components/Profile";
 import NavBar from "./navigation_components/NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AllDogsContainer from "./dog_components/AllDogsContainer";
 
 function App() {
   const blankUserTemplate = {
@@ -20,6 +21,7 @@ function App() {
 
   const [user, setUser] = useState(blankUserTemplate)
   const [loggedIn, setLoggedIn] = useState(false)
+  const [allDogs, setAllDogs] = useState([])
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -29,6 +31,13 @@ function App() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    fetch("/dogs")
+    .then(r => r.json())
+    .then(fetchedDogs => setAllDogs(fetchedDogs)) 
+  }, [])
+
  
 
   const onLogin = (userInfo) => {
@@ -54,7 +63,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={!!loggedIn ? <WelcomePage user={user} /> : <Login user={user} setUser={setUser} onLogin={onLogin} />} />
         <Route exact path="/login" element={<Login onLogin={onLogin} />} />
-        <Route exact path="/testing" element={<h1>Test Route</h1>} />
+        <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs}/>} />
         <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser}/>} />
       </Routes>
       <Footer />
