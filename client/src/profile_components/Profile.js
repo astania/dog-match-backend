@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import ProfileEditForm from './ProfileEditForm'
 
 
-const Profile = ({ user, onLogout, setUser, onLogin }) => {
+const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser }) => {
     const navigate = useNavigate()
     const [toggleEdit, setToggleEdit] = useState(false)
 
@@ -18,6 +18,12 @@ const Profile = ({ user, onLogout, setUser, onLogin }) => {
         setToggleEdit(!toggleEdit)
     }
 
+    const handleDelete = () => {
+        fetch(`/users/${user.id}`, {
+            method: "DELETE",
+        }).then(() => onDeleteUser(user)).then(navigate("/"))
+    }
+
     if (user.first_name) {
         return (
 
@@ -29,6 +35,7 @@ const Profile = ({ user, onLogout, setUser, onLogin }) => {
                 <Button onClick={handleEditClick}>{toggleEdit ? "x" : "edit profile"}</Button>
                 {toggleEdit ? <ProfileEditForm user={user} setUser={setUser} onLogin={onLogin} setToggleEdit={setToggleEdit} /> : ""}
                 <Button onClick={handleLogout}>Logout</Button>
+                <Button onClick={handleDelete}>Delete Profile</Button>
             </div>
         )
     } else {
