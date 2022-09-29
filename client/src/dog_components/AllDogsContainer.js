@@ -1,9 +1,13 @@
 import React from 'react'
+import DogCard from './DogCard'
 
 const AllDogsContainer = ({ allDogs }) => {
-  console.log("in AllDogsContainer:", allDogs)
+  
   return (
-    <div>AllDogsContainer</div>
+
+    <div>
+      {allDogs.map(dog => <DogCard dog={dog} key={dog.id}/>)}
+    </div>
   )
 }
 

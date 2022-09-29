@@ -24,8 +24,7 @@ const NavBar = () => {
             <NavLink
                 style={({ isActive }) => isActive ? activeStyle : style}
                 to="/" end
-                //end is included here to make the home route an exact path. 
-                //Therefore all other paths will not also have active style
+                //end is included here to make the home route an exact path. Therefore all other paths will not also have active style
             >Home</NavLink>
             <NavLink
                 style={({ isActive }) => isActive ? activeStyle : style}
