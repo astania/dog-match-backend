@@ -20,6 +20,7 @@ function App() {
   })
   const [loggedIn, setLoggedIn] = useState(false)
 
+console.log(user)
 
   useEffect(() => {
     fetch("/me").then((response) => {
