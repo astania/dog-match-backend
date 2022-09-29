@@ -1,4 +1,4 @@
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const style = {
     width: "60%",
@@ -16,24 +16,26 @@ const activeStyle = {
     fontWeight: "bold",
     verticalAlign: "center",
     textDecoration: "underline",
-  };
+};
 
 const NavBar = () => {
     return (
         <div>
             <NavLink
-            style={({ isActive }) => isActive ? activeStyle : style}  
-               to="/"
+                style={({ isActive }) => isActive ? activeStyle : style}
+                to="/" end
+                //end is included here to make the home route an exact path. 
+                //Therefore all other paths will not also have active style
             >Home</NavLink>
             <NavLink
-            style={({ isActive }) => isActive ? activeStyle : style}
-                to="/alldogs"
+                style={({ isActive }) => isActive ? activeStyle : style}
+                to="/alldogs" 
             >Dogs</NavLink>
             <NavLink
-            style={({ isActive }) => isActive ? activeStyle : style}
+                style={({ isActive }) => isActive ? activeStyle : style}
                 to="/profile"
             >Profile</NavLink>
-            
+
         </div>
     )
 }
