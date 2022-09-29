@@ -29,7 +29,7 @@ function App() {
       }
     });
   }, []);
-  console.log("user in app.js:", user)
+ 
 
   const onLogin = (userInfo) => {
     setUser(userInfo)

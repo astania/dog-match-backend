@@ -4,13 +4,9 @@ import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 
 const Login = ({ onLogin, user, setUser }) => {
-    // const [username, setUsername] = useState("")
-    // const [password, setPassword] = useState("")
-    // const [passwordConfirmation, setPasswordConfirmation] = useState("")
 
     const [isNewUser, setIsNewUser] = useState(false)
-    console.log("user in login.js:",user)
-
+    
     
   return (
     <div>

@@ -16,7 +16,6 @@ const Profile = ({ user, onLogout, setUser, onLogin }) => {
 
     const handleEditClick = () => {
         setToggleEdit(!toggleEdit)
-        // console.log(toggleEdit)
     }
 
     if (user.first_name) {
