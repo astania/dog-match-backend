@@ -2,6 +2,7 @@ import { React, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import ProfileEditForm from './ProfileEditForm'
+import DogContainer from '../dog_components/DogContainer'
 
 
 const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser }) => {
@@ -34,6 +35,7 @@ const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser }) => {
                 <p>{user.about_me}</p>
                 <Button onClick={handleEditClick}>{toggleEdit ? "x" : "edit profile"}</Button>
                 {toggleEdit ? <ProfileEditForm user={user} setUser={setUser} onLogin={onLogin} setToggleEdit={setToggleEdit} /> : ""}
+                <DogContainer dogs={user.dogs}/>
                 <Button onClick={handleLogout}>Logout</Button>
                 <Button onClick={handleDelete}>Delete Profile</Button>
             </div>
