@@ -35,6 +35,7 @@ const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser }) => {
                 <p>{user.about_me}</p>
                 <Button onClick={handleEditClick}>{toggleEdit ? "x" : "edit profile"}</Button>
                 {toggleEdit ? <ProfileEditForm user={user} setUser={setUser} onLogin={onLogin} setToggleEdit={setToggleEdit} /> : ""}
+                <h5>My Dogs:</h5>
                 <DogContainer dogs={user.dogs}/>
                 <Button onClick={handleLogout}>Logout</Button>
                 <Button onClick={handleDelete}>Delete Profile</Button>
