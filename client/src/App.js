@@ -9,7 +9,7 @@ import NavBar from "./navigation_components/NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AllDogsContainer from "./dog_components/AllDogsContainer";
 import AddDogContainer from "./add_dog_components/AddDogContainer";
-import PlayDatesContainer from "./PlayDatesContainer";
+import PlayDatesContainer from "./play_dates_components/PlayDatesContainer";
 
 // sudo service postgresql start
 
