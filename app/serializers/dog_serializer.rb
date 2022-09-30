@@ -1,4 +1,4 @@
 class DogSerializer < ActiveModel::Serializer
-  attributes :name, :breed, :profile_pic, :about_me, :id
+  attributes :name, :breed, :profile_pic, :about_me, :id, :user_id
   belongs_to :user
 end

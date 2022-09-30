@@ -87,7 +87,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={!!loggedIn ? <WelcomePage user={user} /> : <Login user={user} setUser={setUser} onLogin={onLogin} />} />
         <Route exact path="/login" element={<Login onLogin={onLogin} />} />
-        <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs}/>} />
+        <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs} user={user}/>} />
         <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser} onEditDog={onEditDog} onDeleteDog={onDeleteDog}/>} />
         <Route exact path="/adddog" element={<AddDogContainer user={user} onAddDog={onAddDog}/>} />
       </Routes>
