@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   
   patch '/users/:id', to: 'users#update'
 
+  patch 'dogs/:id', to: 'dogs#update'
+  
   get '*path',
       to: 'fallback#index',
       constraints: ->(req) { !req.xhr? && req.format.html? }

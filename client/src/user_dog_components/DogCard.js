@@ -1,21 +1,25 @@
-import React from 'react'
+import { React, useState } from 'react'
+import DogCardDisplay from './DogCardDisplay'
+import DogEditForm from './DogEditForm'
 
-const DogCard = ({ name, breed, about_me, profile_pic }) => {
+const DogCard = ({ dog, onEditDog }) => {
+
+    const [editDog, setEditDog] = useState(false)
+
+    const onClickEditDog = (e) => {
+        e.preventDefault()
+        setEditDog(true)
+        console.log(editDog)
+    }
+
+    const onDeleteDog = (e) => {
+        e.preventDefault()
+        console.log(e.target)
+    }
 
     return (
-        <div className="card" style={{ width: '18rem' }}>
-            <img className="card-img-top" src={profile_pic} alt="Dog" width="200" height="200" />
-            <div className="card-body">
-                <h5 className="card-title">{name}</h5>
-                <p className="card-text">{about_me}</p>
-            </div>
-            <ul className="list-group list-group-flush">
-                <li className="list-group-item">Breed: {breed}</li>
-            </ul>
-            <div className="card-body">
-                <a href="#" className="card-link">Edit dog</a>
-                <a href="#" className="card-link">Delete dog</a>
-            </div>
+        <div>
+            {editDog ? <DogEditForm dog={dog} onEditDog={onEditDog} setEditDog={setEditDog}/> : <DogCardDisplay dog={dog} onClickEditDog={onClickEditDog} onDeleteDog={onDeleteDog} />}
         </div>
     )
 }

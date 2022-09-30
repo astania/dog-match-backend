@@ -9,6 +9,8 @@ import NavBar from "./navigation_components/NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AllDogsContainer from "./dog_components/AllDogsContainer";
 
+// sudo service postgresql start
+
 function App() {
   const blankUserTemplate = {
     username: "",
@@ -16,7 +18,8 @@ function App() {
     first_name: "",
     last_name: "",
     about_me: "",
-    profile_pic: ""
+    profile_pic: "",
+    dogs: []
   }
 
   const [user, setUser] = useState(blankUserTemplate)
@@ -56,6 +59,23 @@ function App() {
     setLoggedIn(false)
   }
 
+  const onEditDog = (updatedDog) => {
+    const updatedDogArray = user.dogs.map(dog => dog.id == updatedDog.id ? updatedDog : dog)
+    setUser({...user, dogs: updatedDogArray})
+    const updatedDogs = allDogs.map(dog => dog.id == updatedDog.id ? updatedDog : dog)
+    setAllDogs(updatedDogs)
+  }
+
+  // const handleAddForm = (newForm) => {
+  //   setForms([...forms, newForm])
+  // }
+
+  // const handleDeleteForm = (id) => {
+  //   const filteredForms = forms.filter(form => form.id !== id)
+
+  //   setForms(filteredForms)
+  // }
+
   return (
     <BrowserRouter>
       <Header />
@@ -64,7 +84,7 @@ function App() {
         <Route exact path="/" element={!!loggedIn ? <WelcomePage user={user} /> : <Login user={user} setUser={setUser} onLogin={onLogin} />} />
         <Route exact path="/login" element={<Login onLogin={onLogin} />} />
         <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs}/>} />
-        <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser}/>} />
+        <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser} onEditDog={onEditDog}/>} />
       </Routes>
       <Footer />
     </BrowserRouter>
