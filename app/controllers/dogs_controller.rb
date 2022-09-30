@@ -57,7 +57,4 @@ class DogsController < ApplicationController
     render json: {error: invalid.record.errors}, status: :unprocessable_entity
   end 
 
-
-
-
 end

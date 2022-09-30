@@ -34,6 +34,10 @@ const NavBar = () => {
                 style={({ isActive }) => isActive ? activeStyle : style}
                 to="/profile"
             >Profile</NavLink>
+            <NavLink
+                style={({ isActive }) => isActive ? activeStyle : style}
+                to="/adddog"
+            >Add Dogs</NavLink>
 
         </div>
     )

@@ -8,6 +8,7 @@ import Profile from "./profile_components/Profile";
 import NavBar from "./navigation_components/NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AllDogsContainer from "./dog_components/AllDogsContainer";
+import AddDogContainer from "./add_dog_components/AddDogContainer";
 
 // sudo service postgresql start
 
@@ -66,9 +67,12 @@ function App() {
     setAllDogs(updatedDogs)
   }
 
-  // const handleAddForm = (newForm) => {
-  //   setForms([...forms, newForm])
-  // }
+
+  const onAddDog = (newDog) => {
+    const newDogs = [...user.dogs, newDog]
+    setUser({...user, dogs: newDogs})
+    console.log(user)
+  }
 
   // const handleDeleteForm = (id) => {
   //   const filteredForms = forms.filter(form => form.id !== id)
@@ -85,6 +89,7 @@ function App() {
         <Route exact path="/login" element={<Login onLogin={onLogin} />} />
         <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs}/>} />
         <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser} onEditDog={onEditDog}/>} />
+        <Route exact path="/adddog" element={<AddDogContainer user={user} onAddDog={onAddDog}/>} />
       </Routes>
       <Footer />
     </BrowserRouter>
