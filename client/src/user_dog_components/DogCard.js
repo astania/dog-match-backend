@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import DogCardDisplay from './DogCardDisplay'
 import DogEditForm from './DogEditForm'
 
-const DogCard = ({ dog, onEditDog }) => {
+const DogCard = ({ dog, onEditDog, onDeleteDog }) => {
 
     const [editDog, setEditDog] = useState(false)
 
@@ -11,15 +11,18 @@ const DogCard = ({ dog, onEditDog }) => {
         setEditDog(true)
         console.log(editDog)
     }
-
-    const onDeleteDog = (e) => {
+    const onClickDeleteDog = (e) => {
         e.preventDefault()
-        console.log(e.target)
+        fetch(`/dogs/${dog.id}`, {
+            method: "DELETE",
+        }).then(() => onDeleteDog(dog.id))
+
     }
+
 
     return (
         <div>
-            {editDog ? <DogEditForm dog={dog} onEditDog={onEditDog} setEditDog={setEditDog}/> : <DogCardDisplay dog={dog} onClickEditDog={onClickEditDog} onDeleteDog={onDeleteDog} />}
+            {editDog ? <DogEditForm dog={dog} onEditDog={onEditDog} setEditDog={setEditDog}/> : <DogCardDisplay dog={dog} onClickEditDog={onClickEditDog} onClickDeleteDog={onClickDeleteDog} />}
         </div>
     )
 }

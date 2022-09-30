@@ -1,6 +1,9 @@
 import React from 'react'
 
-const DogCardDisplay = ({dog, onClickEditDog, onDeleteDog}) => {
+const DogCardDisplay = ({dog, onClickEditDog, onClickDeleteDog}) => {
+
+    
+
   return (
     <div className="card" style={{ width: '18rem' }}>
             <img className="card-img-top" src={dog.profile_pic} alt="Dog" width="200" height="200" />
@@ -13,7 +16,7 @@ const DogCardDisplay = ({dog, onClickEditDog, onDeleteDog}) => {
             </ul>
             <div className="card-body">
                 <a href="#" onClick={onClickEditDog} className="card-link">Edit dog</a>
-                <a href="#" onClick={onDeleteDog} className="card-link">Delete dog</a>
+                <a href="#" onClick={onClickDeleteDog} className="card-link">Delete dog</a>
             </div>
         </div>
   )

@@ -5,7 +5,7 @@ import ProfileEditForm from './ProfileEditForm'
 import DogContainer from '../user_dog_components/DogContainer'
 
 
-const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser, onEditDog }) => {
+const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser, onEditDog, onDeleteDog }) => {
     const navigate = useNavigate()
     const [toggleEdit, setToggleEdit] = useState(false)
 
@@ -36,7 +36,7 @@ const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser, onEditDog }) 
                 <Button onClick={handleEditClick}>{toggleEdit ? "x" : "edit profile"}</Button>
                 {toggleEdit ? <ProfileEditForm user={user} setUser={setUser} onLogin={onLogin} setToggleEdit={setToggleEdit} /> : ""}
                 <h5>My Dogs:</h5>
-                <DogContainer dogs={user.dogs} onEditDog={onEditDog}/>
+                <DogContainer dogs={user.dogs} onEditDog={onEditDog} onDeleteDog={onDeleteDog} />
                 <Button onClick={handleLogout}>Logout</Button>
                 <Button onClick={handleDelete}>Delete Profile</Button>
             </div>
