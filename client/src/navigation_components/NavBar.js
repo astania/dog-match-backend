@@ -38,6 +38,10 @@ const NavBar = () => {
                 style={({ isActive }) => isActive ? activeStyle : style}
                 to="/adddog"
             >Add Dogs</NavLink>
+            <NavLink
+                style={({ isActive }) => isActive ? activeStyle : style}
+                to="/playdates"
+            >PlayDates</NavLink>
 
         </div>
     )

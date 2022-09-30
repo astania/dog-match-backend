@@ -9,6 +9,7 @@ import NavBar from "./navigation_components/NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AllDogsContainer from "./dog_components/AllDogsContainer";
 import AddDogContainer from "./add_dog_components/AddDogContainer";
+import PlayDatesContainer from "./PlayDatesContainer";
 
 // sudo service postgresql start
 
@@ -90,6 +91,7 @@ function App() {
         <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs} user={user}/>} />
         <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser} onEditDog={onEditDog} onDeleteDog={onDeleteDog}/>} />
         <Route exact path="/adddog" element={<AddDogContainer user={user} onAddDog={onAddDog}/>} />
+        <Route exact path="/playdates" element={<PlayDatesContainer user={user}/> } />
       </Routes>
       <Footer />
     </BrowserRouter>
