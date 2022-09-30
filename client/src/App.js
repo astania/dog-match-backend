@@ -71,7 +71,7 @@ function App() {
   const onAddDog = (newDog) => {
     const newDogs = [...user.dogs, newDog]
     setUser({...user, dogs: newDogs})
-    console.log(user)
+    setAllDogs([...allDogs, newDog])
   }
 
   const onDeleteDog = (id) => {
