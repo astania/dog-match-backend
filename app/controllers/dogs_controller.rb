@@ -11,7 +11,6 @@ class DogsController < ApplicationController
   def create
     dog = Dog.create(dog_params)
     if dog.valid?
-    #   session[:user_id] = user.id
       render json: dog, status: :created
     end
   end
