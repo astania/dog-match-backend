@@ -1,3 +1,5 @@
 class PlayDateSerializer < ActiveModel::Serializer
-  attributes :id, :first_dog_id, :second_dog_id, :date, :time, :notes
+  attributes :id, :date, :time, :notes
+  has_many :play_date_dogs
+  has_many :dogs
 end

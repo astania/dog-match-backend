@@ -1,6 +1,6 @@
 class PlayDateDogsController < ApplicationController
     wrap_parameters format: []
-    skip_before_action :authorized, only: :create
+    # skip_before_action :authorized, only: :create
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   
     def index 
@@ -34,13 +34,13 @@ class PlayDateDogsController < ApplicationController
     end 
   
     def destroy 
-      find_dog
+      find_play_date_dog
       if @dog&.destroy 
         render json: {messages: "Record successfully destroyed"}
       else 
         render json: {error: "Not found"}, status: :not_found
       end 
-    end 
+    end  
   
     private 
   
