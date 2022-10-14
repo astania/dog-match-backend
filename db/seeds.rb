@@ -17,9 +17,9 @@ dog3 = Dog.create(name: "Buck", breed: "Lab", about_me: "If I see a squirrel, I'
 dog4 = Dog.create(name: "Snowy", breed: "Golden Retriever", about_me: "Let's play ball", user_id: 2, profile_pic: "https://i.imgur.com/XgbZdeAb.jpg" )
 dog5 = Dog.create(name: "Boon", breed: "Mutt", about_me: "a real life cryptid", user_id: 1, profile_pic: "https://i.imgur.com/H981AN7b.jpg" )
 dog6 = Dog.create(name: "June", breed: "Chihuahua", about_me: "C.R.E.A.M", user_id: 3, profile_pic: "https://i.imgur.com/gtWsPu9b.jpg" )
-date1 = PlayDate.create(date: "Saturday, October 6", time: "11:00 am", notes: "let's play fetch")
-date2 = PlayDate.create(date: "Tuesday, November 5", time: "5:30 pm", notes: "let's go to the park")
-playdatedogs1 = PlayDateDog.create(play_date_id: 1, dog_id: 1, requested_dog_id: 2)
-playdatedogs2 = PlayDateDog.create(play_date_id: 2, dog_id: 5, requested_dog_id: 4)
+date1 = Playdate.create(date: "Saturday, October 6", time: "11:00 am", notes: "let's play fetch", dog_id: 1)
+date2 = Playdate.create(date: "Tuesday, November 5", time: "5:30 pm", notes: "let's go to the park", dog_id: 5)
+PDRP1 = PlaydateRequestedDog.create(playdate_id: 1, dog_id: 2)
+PDRP2 = PlaydateRequestedDog.create(playdate_id: 2, dog_id: 4)
 
 puts "Done seeding!"

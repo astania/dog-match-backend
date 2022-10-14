@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_10_135624) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_13_182243) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,18 +24,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_135624) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "play_date_dogs", force: :cascade do |t|
-    t.integer "dog_id"
+  create_table "play_date_request_dogs", force: :cascade do |t|
     t.integer "requested_dog_id"
     t.integer "play_date_id"
+    t.boolean "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "play_dates", force: :cascade do |t|
+  create_table "playdate_requested_dogs", force: :cascade do |t|
+    t.integer "dog_id"
+    t.integer "playdate_id"
+    t.boolean "accepted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "playdates", force: :cascade do |t|
     t.string "date"
     t.string "time"
     t.text "notes"
+    t.integer "dog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

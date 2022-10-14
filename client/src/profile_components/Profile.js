@@ -29,7 +29,7 @@ const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser, onEditDog, on
         return (
 
             <div>
-                <img src={user.profile_pic} alt="profile" width="200" height="200" />
+                <img src={user.profile_pic} alt="profile" height="200" />
                 <h3>{user.first_name} {user.last_name}</h3>
                 <h5>Bio:</h5>
                 <p>{user.about_me}</p>

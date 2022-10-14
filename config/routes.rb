@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :play_date_dogs
-  resources :play_dates
+  resources :playdate_requested_dogs
+  resources :playdates
+  
   resources :dogs, only: [:create, :show, :index, :destroy]
 
   resources :users, only: [:create, :destroy]

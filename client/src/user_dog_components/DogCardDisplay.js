@@ -6,7 +6,7 @@ const DogCardDisplay = ({dog, onClickEditDog, onClickDeleteDog}) => {
 
   return (
     <div className="card" style={{ width: '18rem' }}>
-            <img className="card-img-top" src={dog.profile_pic} alt="Dog" width="200" height="200" />
+            <img className="card-img-top" src={dog.profile_pic} alt="Dog" height="200" />
             <div className="card-body">
                 <h5 className="card-title">{dog.name}</h5>
                 <p className="card-text">{dog.about_me}</p>
