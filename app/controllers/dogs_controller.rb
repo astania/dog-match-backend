@@ -5,7 +5,7 @@ class DogsController < ApplicationController
 
   def index 
     dogs = Dog.all 
-    render json: dogs
+    render json: dogs, methods: [:requested_play_dates, :summary]
   end 
   
   def create
