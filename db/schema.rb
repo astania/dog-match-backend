@@ -24,14 +24,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_182243) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "play_date_request_dogs", force: :cascade do |t|
-    t.integer "requested_dog_id"
-    t.integer "play_date_id"
-    t.boolean "accepted"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "playdate_requested_dogs", force: :cascade do |t|
     t.integer "dog_id"
     t.integer "playdate_id"

@@ -26,7 +26,7 @@ const LoginForm = ({ onLogin, setIsNewUser, user, setUser }) => {
     const handleChange = (e) => {
         const value = e.target.value
         const name = e.target.name
-        
+
         setUser({
             ...user, [name]: value
         })
@@ -34,22 +34,27 @@ const LoginForm = ({ onLogin, setIsNewUser, user, setUser }) => {
 
 
     return (
-        <div>
+        <div className="text-center">
             <h4>Log in below:</h4>
+            
+                <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label> Username
+                        <input className="form-control" type="text" name="username" placeholder="name@example.com" value={user.username} onChange={handleChange} />
+                    </label>
+                    </div>
+                    <div className="form-group">
+                    <label> Password
+                        <input className="form-control" type="text" name="password" placeholder="*****" value={user.password} onChange={handleChange} />
+                    </label>
+                    </div>
 
-            <form onSubmit={handleSubmit}>
-                <label> Username
-                    <input type="text" name="username" value={user.username} onChange={handleChange} />
-                </label>
-                <label> Password
-                    <input type="text" name="password" value={user.password} onChange={handleChange} />
-                </label>
+                    <button class="btn btn-primary" type="submit" value="Login">Login</button>
+                </form>
+                <h4>Are you new here? Create an account below:</h4>
+                <button class="btn btn-secondary"onClick={() => setIsNewUser(true)}>Create Account</button>
 
-                <button type="submit" value="Login">Login</button>
-            </form>
-            <h4>Are you new here? Create an account below:</h4>
-            <button onClick={() => setIsNewUser(true)}>Create Account</button>
-
+            
         </div>
     )
 }

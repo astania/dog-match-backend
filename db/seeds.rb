@@ -19,7 +19,10 @@ dog5 = Dog.create(name: "Boon", breed: "Mutt", about_me: "a real life cryptid", 
 dog6 = Dog.create(name: "June", breed: "Chihuahua", about_me: "C.R.E.A.M", user_id: 3, profile_pic: "https://i.imgur.com/gtWsPu9b.jpg" )
 date1 = Playdate.create(date: "Saturday, October 6", time: "11:00 am", notes: "let's play fetch", dog_id: 1)
 date2 = Playdate.create(date: "Tuesday, November 5", time: "5:30 pm", notes: "let's go to the park", dog_id: 5)
+date3 = Playdate.create(date: "Tuesday, November 22", time: "9:30 am", notes: "let's take a walk", dog_id: 6)
 PDRP1 = PlaydateRequestedDog.create(playdate_id: 1, dog_id: 2)
 PDRP2 = PlaydateRequestedDog.create(playdate_id: 2, dog_id: 4)
+PDRP3 = PlaydateRequestedDog.create(playdate_id: 3, dog_id: 1)
+# Playdate.new(date: "Tuesday, November 22", time: "9:30 am", notes: "let's take a walk", dog_id: 6)
 
 puts "Done seeding!"

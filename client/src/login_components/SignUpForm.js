@@ -52,37 +52,50 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
     }
 
     return (
-        <div>
+        <div className="text-center">
             <h4>Create an account:</h4>
             <form onSubmit={handleSubmit}>
-                <label> Username:
-                    <input type="text" name="username" value={userInput.username} onChange={handleChange} />
-                </label>
-                <label> Password:
-                    <input type="text" name="password" value={userInput.password} onChange={handleChange} />
-                </label>
-                <label> Confirm Password:
-                    <input type="text" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                </label>
-                {passwordDoesNotMatch ? <p>password must match</p> : ""}
-                <label> First Name:
-                    <input type="text" name="first_name" value={userInput.first_name} onChange={handleChange} />
-                </label>
-                <label> Last Name:
-                    <input type="text" name="last_name" value={userInput.last_name} onChange={handleChange} />
-                </label>
-                <label> About Me:
-                    {/* <input type="text" name="about_me" value={user.about_me} onChange={handleChange} /> */}
-                    <textarea name="about_me" rows="4" cols="50" value={userInput.about_me} onChange={handleChange}></textarea>
-                </label>
-                <label> Profile Pic URL:
-                    <input type="text" name="profile_pic" value={userInput.profile_pic} onChange={handleChange} />
-                </label>
+                
+                <div className="form-control">
+                    <label> Username:
+                        <input type="text" name="username" value={userInput.username} onChange={handleChange} />
+                    </label>
+                </div>
+                <div className="form-control">
+                    <label> Password:
+                        <input type="text" name="password" value={userInput.password} onChange={handleChange} />
+                    </label>
+                </div>
+                <div className="form-control">
+                    <label> Confirm Password:
+                        <input type="text" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                    </label>
+                    {passwordDoesNotMatch ? <p>password must match</p> : ""}
+                </div>
+                <div className="form-control">
+                    <label> First Name:
+                        <input type="text" name="first_name" value={userInput.first_name} onChange={handleChange} />
+                    </label>
+                    <label> Last Name:
+                        <input type="text" name="last_name" value={userInput.last_name} onChange={handleChange} />
+                    </label>
+                </div>
+                <div className="form-control">
+                    <label> About Me:
+                        {/* <input type="text" name="about_me" value={user.about_me} onChange={handleChange} /> */}
+                        <textarea name="about_me" rows="4" cols="50" value={userInput.about_me} onChange={handleChange}></textarea>
+                    </label>
+                </div>
+                <div className="form-control">
+                    <label> Profile Pic URL:
+                        <input type="text" name="profile_pic" value={userInput.profile_pic} onChange={handleChange} />
+                    </label>
+                </div>
 
-                <button type="submit" value="Login">Create Account</button>
+                <button class="btn btn-primary" type="submit" value="Login">Create Account</button>
             </form>
             <h4>Already have an account?</h4>
-            <button onClick={() => setIsNewUser(false)}>Login</button>
+            <button class="btn btn-secondary" onClick={() => setIsNewUser(false)}>Login</button>
         </div>
     )
 }
