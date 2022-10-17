@@ -1,20 +1,18 @@
-import {React, useState} from 'react'
+import React from 'react'
 
-const DogCard = ({dog, onAddRequestedDog, onRemoveRequestedDog}) => {
-  const [isRequested, setIsRequested] = useState(false)
-  
+const DogCard = ({dog, onAddRequestedDog, onRemoveRequestedDog, requestedDogs}) => {
+  // const [isRequested, setIsRequested] = useState(false)
+
+  const requestedDogIds = requestedDogs.map(dog => dog.id)
   
   const onAddDog = () => {
     onAddRequestedDog(dog)
-    setIsRequested(true)
   }
 
   const onRemoveDog = () => {
     onRemoveRequestedDog(dog)
-    setIsRequested(false)
   }
   
-
   // const playDateRequest = {
   //   requested_dog_id: dog.id,
   //   dogId: 1,
@@ -47,7 +45,7 @@ const DogCard = ({dog, onAddRequestedDog, onRemoveRequestedDog}) => {
         <li className="list-group-item">Breed: {dog.breed}</li>
     </ul>
     <div className="card-body">
-        {isRequested? <a href="#" className="card-link" onClick={() => onRemoveDog()}>remove from playdate request form</a> : <a href="#" className="card-link" onClick={() => onAddDog()}>Add to playdate request form</a>}
+        {requestedDogIds.includes(dog.id) ? <a href="#" className="card-link" onClick={() => onRemoveDog()}>remove from playdate request form</a> : <a href="#" className="card-link" onClick={() => onAddDog()}>Add to playdate request form</a>}
     </div>
 </div>
   )

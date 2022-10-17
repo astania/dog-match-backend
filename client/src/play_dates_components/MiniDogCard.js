@@ -5,6 +5,7 @@ const MiniDogCard = ({dog, index, onRemoveRequestedDog}) => {
     const onRemoveDog = () => {
         onRemoveRequestedDog(dog)
       }
+      
     return (
     <div className="card" style={{width: 200}}>
             <h5>Playmate #{index + 1}</h5>
