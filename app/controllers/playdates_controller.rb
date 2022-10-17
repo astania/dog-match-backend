@@ -1,5 +1,5 @@
 class PlaydatesController < ApplicationController
-    wrap_parameters format: []
+    # wrap_parameters format: []
     # skip_before_action :authorized, only: :create
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   
@@ -11,8 +11,7 @@ class PlaydatesController < ApplicationController
     def create
       playdate = Playdate.create(playdate_params)
       if playdate.valid?
-      #   session[:user_id] = user.id
-        render json: playdate, status: :created
+        render json: playdate
       end
     end
     
@@ -50,7 +49,7 @@ class PlaydatesController < ApplicationController
     end 
   
     def playdate_params 
-      params.permit(:dog_id, :date, :id, :time, :notes)
+      params.require(:playdate).permit(:dog_id, :date, :time, :notes)
     end 
   
     def render_unprocessable_entity(invalid)
