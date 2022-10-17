@@ -49,10 +49,10 @@ const LoginForm = ({ onLogin, setIsNewUser, user, setUser }) => {
                     </label>
                     </div>
 
-                    <button class="btn btn-primary" type="submit" value="Login">Login</button>
+                    <button className="btn btn-primary" type="submit" value="Login">Login</button>
                 </form>
                 <h4>Are you new here? Create an account below:</h4>
-                <button class="btn btn-secondary"onClick={() => setIsNewUser(true)}>Create Account</button>
+                <button className="btn btn-secondary"onClick={() => setIsNewUser(true)}>Create Account</button>
 
             
         </div>

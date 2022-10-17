@@ -27,6 +27,8 @@ function App() {
   const [user, setUser] = useState(blankUserTemplate)
   const [loggedIn, setLoggedIn] = useState(false)
   const [allDogs, setAllDogs] = useState([])
+  const [requestedDogs, setRequestedDogs] = useState([])
+  
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -42,8 +44,6 @@ function App() {
     .then(r => r.json())
     .then(fetchedDogs => setAllDogs(fetchedDogs)) 
   }, [])
-
- 
 
   const onLogin = (userInfo) => {
     setUser(userInfo)
@@ -68,7 +68,6 @@ function App() {
     setAllDogs(updatedDogs)
   }
 
-
   const onAddDog = (newDog) => {
     const newDogs = [...user.dogs, newDog]
     setUser({...user, dogs: newDogs})
@@ -77,8 +76,23 @@ function App() {
 
   const onDeleteDog = (id) => {
     const filteredDogs = user.dogs.filter(dog => dog.id !== id)
-
     setUser({...user, dogs: filteredDogs})
+  }
+
+  const onAddRequestedDog = (dog) => {
+    const requestedDogIds = requestedDogs.map(dog => dog.id)
+    console.log("requested dog ids:",requestedDogIds)
+    if(!requestedDogIds.includes(dog.id)){
+      setRequestedDogs([...requestedDogs, dog])
+    } else {
+      console.log("oops! dog already added")
+    }
+  }
+
+  const onRemoveRequestedDog = (dog) => {
+    const removedDogs = requestedDogs.filter(req => req.id !== dog.id)
+    setRequestedDogs(removedDogs)
+    
   }
 
   return (
@@ -88,10 +102,10 @@ function App() {
       <Routes>
         <Route exact path="/" element={!!loggedIn ? <WelcomePage user={user} /> : <Login user={user} setUser={setUser} onLogin={onLogin} />} />
         <Route exact path="/login" element={<Login onLogin={onLogin} />} />
-        <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs} user={user}/>} />
+        <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs} user={user} onAddRequestedDog={onAddRequestedDog} onRemoveRequestedDog={onRemoveRequestedDog} />} />
         <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser} onEditDog={onEditDog} onDeleteDog={onDeleteDog}/>} />
         <Route exact path="/adddog" element={<AddDogContainer user={user} onAddDog={onAddDog}/>} />
-        <Route exact path="/playdates" element={<PlayDatesContainer user={user}/> } />
+        <Route exact path="/playdates" element={<PlayDatesContainer user={user} requestedDogs={requestedDogs} setRequestedDogs={setRequestedDogs} onRemoveRequestedDog={onRemoveRequestedDog} /> } />
       </Routes>
       <Footer />
     </BrowserRouter>

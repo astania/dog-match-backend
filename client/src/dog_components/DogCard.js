@@ -1,33 +1,41 @@
-import React from 'react'
+import {React, useState} from 'react'
 
-const DogCard = ({dog}) => {
-
-  const printDogId = () => {
-    console.log(dog.id)
+const DogCard = ({dog, onAddRequestedDog, onRemoveRequestedDog}) => {
+  const [isRequested, setIsRequested] = useState(false)
+  
+  
+  const onAddDog = () => {
+    onAddRequestedDog(dog)
+    setIsRequested(true)
   }
 
-  const playDateRequest = {
-    requested_dog_id: dog.id,
-    dogId: 1,
-    playDateId: 1
+  const onRemoveDog = () => {
+    onRemoveRequestedDog(dog)
+    setIsRequested(false)
   }
+  
 
-  const requestPlayDate = (e) => {
-    e.preventDefault()
-    fetch("/play_date", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(playDateRequest),
-    })
-        .then(res => {
-            if (res.ok) {
-                res.json().then(dogInfo => console.log(dogInfo))
-            }
-        })
-      
-  }
+  // const playDateRequest = {
+  //   requested_dog_id: dog.id,
+  //   dogId: 1,
+  //   playDateId: 1
+  // }
+
+  // const requestPlayDate = (e) => {
+  //   e.preventDefault()
+  //   fetch("/play_date", {
+  //       method: "POST",
+  //       headers: {
+  //           "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(playDateRequest),
+  //   })
+  //       .then(res => {
+  //           if (res.ok) {
+  //               res.json().then(dogInfo => console.log(dogInfo))
+  //           }
+  //       })
+  // }
   return (
     <div className="card" style={{ width: '18rem' }}>
     <img className="card-img-top" src={dog.profile_pic} alt="Dog" width="200" />
@@ -39,7 +47,7 @@ const DogCard = ({dog}) => {
         <li className="list-group-item">Breed: {dog.breed}</li>
     </ul>
     <div className="card-body">
-        <a href="#" className="card-link" onClick={requestPlayDate}>Request play date</a>
+        {isRequested? <a href="#" className="card-link" onClick={() => onRemoveDog()}>remove from playdate request form</a> : <a href="#" className="card-link" onClick={() => onAddDog()}>Add to playdate request form</a>}
     </div>
 </div>
   )
