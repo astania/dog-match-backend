@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   wrap_parameters format: []
-  # skip_before_action :authorized, only: :create
+  skip_before_action :authorized, only: :create
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
   def create

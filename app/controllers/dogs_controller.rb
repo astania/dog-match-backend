@@ -1,11 +1,11 @@
 class DogsController < ApplicationController
     wrap_parameters format: []
-  # skip_before_action :authorized, only: :create
+  skip_before_action :authorized, only: :create
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
   def index 
     dogs = Dog.all 
-    render json: dogs, methods: [:requested_play_dates, :summary]
+    render json: dogs
   end 
   
   def create

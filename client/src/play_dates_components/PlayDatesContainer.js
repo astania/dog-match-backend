@@ -11,7 +11,6 @@ const PlayDatesContainer = ({ user, requestedDogs, onRemoveRequestedDog }) => {
     requested_dogs: requestedDogIds
   }
 
-  
   const [playdateRequest, setPlaydateRequest] = useState(blankPlaydateInput)
 
   // console.log("playdate request input", playdateRequestedDogsInput)

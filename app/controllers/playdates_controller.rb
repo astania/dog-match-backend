@@ -1,11 +1,11 @@
 class PlaydatesController < ApplicationController
-    # wrap_parameters format: []
-    # skip_before_action :authorized, only: :create
+    wrap_parameters format: []
+    skip_before_action :authorized, only: :create
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   
     def index 
       playdates = Playdate.all 
-      render json: playdates
+      render json: playdates, include: [:dogs]
     end 
     
     def create
@@ -19,7 +19,7 @@ class PlaydatesController < ApplicationController
     def show
       find_playdate
       if @playdate
-        render json: @playdate
+        render json: @playdate, include: :dogs
       else
         render json: { error: "Not authorized" }, status: :unauthorized
       end
@@ -28,9 +28,9 @@ class PlaydatesController < ApplicationController
     def update 
       find_playdate
       if @playdate&.update(playdate_params) 
-        render json: @playdate
+        render json: @playdate, include: :dogs
       else 
-        render json: {error: "Play date not found"}, status: :not_found
+        render json: {error: "Playdate not found"}, status: :not_found
       end 
     end 
   
@@ -39,7 +39,7 @@ class PlaydatesController < ApplicationController
       if @playdate&.destroy 
         render json: {messages: "Record successfully destroyed"}
       else 
-        render json: {error: "Play date not found"}, status: :not_found
+        render json: {error: "Playdate not found"}, status: :not_found
       end 
     end 
   
