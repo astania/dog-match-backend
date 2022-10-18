@@ -9,7 +9,7 @@ class PlaydateRequestedDogsController < ApplicationController
     end 
     
     def create
-      playdate_requested_dog = PlaydateRequestedDog.create(playdate_dog_params)
+      playdate_requested_dog = PlaydateRequestedDog.create(playdate_requested_dog_params)
       if playdate_requested_dog.valid?
         render json: playdate_requested_dog, status: :created
       end
@@ -48,7 +48,7 @@ class PlaydateRequestedDogsController < ApplicationController
       @playdate_requested_dog = PlaydateRequestedDog.find_by_id(params[:id])
     end 
   
-    def play_date_requested_dog_params 
+    def playdate_requested_dog_params 
       params.permit(:playdate_id,:dog_id, :accepted)
     end 
   

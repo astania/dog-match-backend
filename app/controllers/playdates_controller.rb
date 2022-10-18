@@ -11,6 +11,7 @@ class PlaydatesController < ApplicationController
     def create
       playdate = Playdate.create(playdate_params)
       if playdate.valid?
+        params[:requested_dogs].each{|dog| PlaydateRequestedDog.create(playdate_id: playdate.id, dog_id: dog)}
         render json: playdate
       end
     end
@@ -49,7 +50,7 @@ class PlaydatesController < ApplicationController
     end 
   
     def playdate_params 
-      params.require(:playdate).permit(:dog_id, :date, :time, :notes)
+      params.permit(:dog_id, :date, :time, :notes)
     end 
   
     def render_unprocessable_entity(invalid)
