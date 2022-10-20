@@ -5,7 +5,9 @@ class PlaydateSerializer < ActiveModel::Serializer
   #!!
   belongs_to :host_dog, serializer: PlaydateHostAndInvitedDogsSerializer
   has_many :invited_dogs, serializer: PlaydateHostAndInvitedDogsSerializer
+
   #!!
+  
   # has_many :accepted_dogs
   # has_many :pending_dogs
   # has_many :declined_dogs

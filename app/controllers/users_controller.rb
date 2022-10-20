@@ -14,8 +14,7 @@ class UsersController < ApplicationController
   def show
     find_user
     if @user
-      render json: @user
-      #, include: ['dogs', 'dogs.playdates']
+      render json: @user, include: ['dogs', 'dogs.requested_playdates', 'dogs.hosted_playdates']
     else
       render json: { error: "Not authorized" }, status: :unauthorized
     end
@@ -24,7 +23,7 @@ class UsersController < ApplicationController
   def update 
     find_user
     if @user&.update(user_params) 
-      render json: @user
+      render json: @user 
     else 
       render json: {error: "User not found"}, status: :not_found
     end 
@@ -46,8 +45,9 @@ class UsersController < ApplicationController
   end 
 
   def user_params 
-    params.permit(:username, :password, :first_name, :last_name, :about_me, :profile_pic)
+    params.require(:user).permit(:username, :password, :first_name, :last_name, :about_me, :profile_pic)
   end 
+  
 
   def render_unprocessable_entity(invalid)
     render json: {error: invalid.record.errors}, status: :unprocessable_entity
