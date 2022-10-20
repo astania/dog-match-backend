@@ -27,7 +27,6 @@ const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser, onEditDog, on
 
     if (user.first_name) {
         return (
-
             <div>
                 <img src={user.profile_pic} alt="profile" height="200" />
                 <h3>{user.first_name} {user.last_name}</h3>
@@ -38,7 +37,7 @@ const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser, onEditDog, on
                 <h5>My Dogs:</h5>
                 <DogContainer dogs={user.dogs} onEditDog={onEditDog} onDeleteDog={onDeleteDog} />
                 <Button onClick={handleLogout}>Logout</Button>
-                <Button onClick={handleDelete}>Delete Profile</Button>
+                <Button className="btn btn-secondary" onClick={handleDelete}>Delete Profile</Button>
             </div>
         )
     } else {

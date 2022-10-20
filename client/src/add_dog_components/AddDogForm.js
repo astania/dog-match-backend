@@ -1,6 +1,6 @@
-import {React, useState} from 'react'
+import { React, useState } from 'react'
 
-const AddDogForm = ({user, onAddDog}) => {
+const AddDogForm = ({ user, onAddDog }) => {
     const blankDogInput = {
         name: "",
         breed: "",
@@ -32,7 +32,7 @@ const AddDogForm = ({user, onAddDog}) => {
             .then(res => {
                 if (res.ok) {
                     res.json().then(dogInfo => onAddDog(dogInfo))
-                    .then(setDogInput(blankDogInput))
+                        .then(setDogInput(blankDogInput))
                 } else {
                     // res.json().then( e => setErrors(Object.entries(e.error).flat()))
                     // res.json().then( e => console.log("Errors:", e))
@@ -41,28 +41,34 @@ const AddDogForm = ({user, onAddDog}) => {
             })
     }
 
-  return (
-    <div>
+    return (
+        <div >
             <h4>Add a Dog:</h4>
             <form onSubmit={handleSubmit}>
-                <label> Name:
-                    <input type="text" name="name" value={dogInput.name} onChange={handleChange} />
-                </label>
-                <label> Breed:
-                    <input type="text" name="breed" value={dogInput.breed} onChange={handleChange} />
-                </label>
-                <label> About Me:
-                    {/* <input type="text" name="about_me" value={user.about_me} onChange={handleChange} /> */}
-                    <textarea name="about_me" rows="4" cols="50" value={dogInput.about_me} onChange={handleChange}></textarea>
-                </label>
-                <label> Profile Pic URL:
-                    <input type="text" name="profile_pic" value={dogInput.profile_pic} onChange={handleChange} />
-                </label>
+                <div className="form-group">
+                    <label> Name:
+                        <input type="text" name="name" value={dogInput.name} onChange={handleChange} />
+                    </label>
+                    <label> Breed:
+                        <input type="text" name="breed" value={dogInput.breed} onChange={handleChange} />
+                    </label>
+                </div>
+                <div className="form-group">
+                    <label> Profile Pic URL:
+                        <input type="text" name="profile_pic" value={dogInput.profile_pic} onChange={handleChange} />
+                    </label>
+                </div>
+                <div className="form-group">
+                    <label> About Me:
+                        <textarea name="about_me" rows="4" cols="50" value={dogInput.about_me} onChange={handleChange}></textarea>
+                    </label>
+                </div>
 
-                <button type="submit" value="add_dog">Add Dog</button>
+
+                <button className="btn btn-primary" type="submit" value="add_dog">Add Dog</button>
             </form>
         </div>
-  )
+    )
 }
 
 export default AddDogForm

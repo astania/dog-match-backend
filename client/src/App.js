@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AllDogsContainer from "./dog_components/AllDogsContainer";
 import AddDogContainer from "./add_dog_components/AddDogContainer";
 import PlayDatesContainer from "./play_dates_components/PlayDatesContainer";
+import MyPlayDatesContainer from "./my_playdates_components/MyPlayDatesContainer";
 
 // sudo service postgresql start
 
@@ -28,6 +29,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [allDogs, setAllDogs] = useState([])
   const [requestedDogs, setRequestedDogs] = useState([])
+
+  console.log("user", user)
   
 
   useEffect(() => {
@@ -106,6 +109,7 @@ function App() {
         <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser} onEditDog={onEditDog} onDeleteDog={onDeleteDog}/>} />
         <Route exact path="/adddog" element={<AddDogContainer user={user} onAddDog={onAddDog}/>} />
         <Route exact path="/playdates" element={<PlayDatesContainer user={user} requestedDogs={requestedDogs} onRemoveRequestedDog={onRemoveRequestedDog} /> } />
+        <Route exact path="/myplaydates" element={ <MyPlayDatesContainer user={user}/> } />
       </Routes>
       <Footer />
     </BrowserRouter>

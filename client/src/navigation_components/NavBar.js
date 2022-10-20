@@ -24,24 +24,28 @@ const NavBar = () => {
             <NavLink
                 style={({ isActive }) => isActive ? activeStyle : style}
                 to="/" end
-                //end is included here to make the home route an exact path. Therefore all other paths will not also have active style
+            //end is included here to make the home route an exact path. Therefore all other paths will not also have active style
             >Home</NavLink>
             <NavLink
                 style={({ isActive }) => isActive ? activeStyle : style}
-                to="/alldogs" 
-            >Dogs</NavLink>
+                to="/alldogs"
+            >Find Playmates</NavLink>
             <NavLink
                 style={({ isActive }) => isActive ? activeStyle : style}
-                to="/profile"
-            >Profile</NavLink>
+                to="/playdates"
+            >Playdate Request</NavLink>
+            <NavLink
+                style={({ isActive }) => isActive ? activeStyle : style}
+                to="/myplaydates"
+            >My Playdates</NavLink>
             <NavLink
                 style={({ isActive }) => isActive ? activeStyle : style}
                 to="/adddog"
             >Add Dogs</NavLink>
             <NavLink
                 style={({ isActive }) => isActive ? activeStyle : style}
-                to="/playdates"
-            >PlayDates</NavLink>
+                to="/profile"
+            >Profile</NavLink>
 
         </div>
     )

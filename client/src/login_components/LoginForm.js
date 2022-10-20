@@ -36,25 +36,25 @@ const LoginForm = ({ onLogin, setIsNewUser, user, setUser }) => {
     return (
         <div className="text-center">
             <h4>Log in below:</h4>
-            
-                <form onSubmit={handleSubmit}>
+
+            <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label> Username
                         <input className="form-control" type="text" name="username" placeholder="name@example.com" value={user.username} onChange={handleChange} />
                     </label>
-                    </div>
-                    <div className="form-group">
+                </div>
+                <div className="form-group">
                     <label> Password
                         <input className="form-control" type="text" name="password" placeholder="*****" value={user.password} onChange={handleChange} />
                     </label>
-                    </div>
+                </div>
 
-                    <button className="btn btn-primary" type="submit" value="Login">Login</button>
-                </form>
-                <h4>Are you new here? Create an account below:</h4>
-                <button className="btn btn-secondary"onClick={() => setIsNewUser(true)}>Create Account</button>
+                <button className="btn btn-primary" type="submit" value="Login">Login</button>
+            </form>
+            <h4>Are you new here? Create an account below:</h4>
+            <button className="btn btn-secondary" onClick={() => setIsNewUser(true)}>Create Account</button>
 
-            
+
         </div>
     )
 }

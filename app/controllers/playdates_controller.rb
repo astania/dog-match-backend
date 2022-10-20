@@ -1,6 +1,6 @@
 class PlaydatesController < ApplicationController
     wrap_parameters format: []
-    skip_before_action :authorized, only: :create
+    # skip_before_action :authorized, only: :create
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   
     def index 
@@ -12,14 +12,14 @@ class PlaydatesController < ApplicationController
       playdate = Playdate.create(playdate_params)
       if playdate.valid?
         params[:requested_dogs].each{|dog| PlaydateRequestedDog.create(playdate_id: playdate.id, dog_id: dog)}
-        render json: playdate
+        render json: playdate, flag: "restrict"
       end
     end
     
     def show
       find_playdate
       if @playdate
-        render json: @playdate, include: :dogs
+        render json: @playdate, flag: "restrict"
       else
         render json: { error: "Not authorized" }, status: :unauthorized
       end

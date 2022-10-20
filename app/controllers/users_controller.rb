@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   wrap_parameters format: []
-  skip_before_action :authorized, only: :create
+  # skip_before_action :authorized, only: :create
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
   def create
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def show
     find_user
     if @user
-      render json: @user
+      render json: @user, include: ['dogs', 'dogs.playdates']
     else
       render json: { error: "Not authorized" }, status: :unauthorized
     end
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def update 
     find_user
     if @user&.update(user_params) 
-      render json: @user
+      render json: @user, include: 'user.dogs.**'
     else 
       render json: {error: "User not found"}, status: :not_found
     end 

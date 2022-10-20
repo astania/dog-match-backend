@@ -92,7 +92,7 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
                     </label>
                 </div>
 
-                <button class="btn btn-primary" type="submit" value="Login">Create Account</button>
+                <button className="btn btn-primary" type="submit" value="Login">Create Account</button>
             </form>
             <h4>Already have an account?</h4>
             <button class="btn btn-secondary" onClick={() => setIsNewUser(false)}>Login</button>
