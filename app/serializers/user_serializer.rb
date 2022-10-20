@@ -4,7 +4,4 @@ class UserSerializer < ActiveModel::Serializer
   # has_many :requested_playdates
   # has_many :hosted_playdates
 
- 
-
-
 end

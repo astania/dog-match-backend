@@ -30,9 +30,6 @@ function App() {
   const [allDogs, setAllDogs] = useState([])
   const [requestedDogs, setRequestedDogs] = useState([])
 
-  console.log("user", user)
-  
-
   useEffect(() => {
     fetch("/me").then((response) => {
       if (response.ok) {
@@ -41,6 +38,8 @@ function App() {
       }
     });
   }, []);
+
+  console.log("user", user)
 
   useEffect(() => {
     fetch("/dogs")
@@ -53,8 +52,7 @@ function App() {
     setLoggedIn(true)
   }
 
-  const onDeleteUser = (userInfo) => {
-    console.log("delete!!", userInfo)
+  const onDeleteUser = () => {
     setUser(blankUserTemplate)
     setLoggedIn(false)
   }

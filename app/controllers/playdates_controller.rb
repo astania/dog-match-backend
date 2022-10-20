@@ -12,14 +12,14 @@ class PlaydatesController < ApplicationController
       playdate = Playdate.create(playdate_params)
       if playdate.valid?
         params[:requested_dogs].each{|dog| PlaydateRequestedDog.create(playdate_id: playdate.id, dog_id: dog)}
-        render json: playdate, flag: "restrict"
+        render json: playdate
       end
     end
     
     def show
       find_playdate
       if @playdate
-        render json: @playdate, flag: "restrict"
+        render json: @playdate
       else
         render json: { error: "Not authorized" }, status: :unauthorized
       end
