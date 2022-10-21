@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 const DogContainer = ({ dogs, onEditDog, onDeleteDog }) => {
 
     return (
-        <Row xs={1} md={3} className="g-4">
+        <Row xs={1} md={2} className="g-4">
             {dogs.map((dog, index) => <Col sm='6' key={dog.id} ><DogCard dog={dog} key={index} onEditDog={onEditDog} onDeleteDog={onDeleteDog} /> </Col>)}
         </Row>
     )

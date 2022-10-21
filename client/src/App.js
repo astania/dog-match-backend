@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from "react";
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Login from "./login_components/Login";
@@ -6,11 +7,10 @@ import Footer from "./navigation_components/Footer";
 import Header from "./navigation_components/Header";
 import Profile from "./profile_components/Profile";
 import NavBar from "./navigation_components/NavBar";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import AllDogsContainer from "./dog_components/AllDogsContainer";
 import AddDogContainer from "./add_dog_components/AddDogContainer";
-import PlayDatesContainer from "./play_dates_components/PlayDatesContainer";
-import MyPlayDatesContainer from "./my_playdates_components/MyPlayDatesContainer";
+import PlaydatesContainer from "./playdates_components/PlaydatesContainer";
+import MyPlaydatesContainer from "./my_playdates_components/MyPlaydatesContainer";
 
 // sudo service postgresql start
 
@@ -106,8 +106,8 @@ function App() {
         <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs} user={user} onAddRequestedDog={onAddRequestedDog} onRemoveRequestedDog={onRemoveRequestedDog} requestedDogs={requestedDogs}/>} />
         <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser} onEditDog={onEditDog} onDeleteDog={onDeleteDog}/>} />
         <Route exact path="/adddog" element={<AddDogContainer user={user} onAddDog={onAddDog}/>} />
-        <Route exact path="/playdates" element={<PlayDatesContainer user={user} requestedDogs={requestedDogs} onRemoveRequestedDog={onRemoveRequestedDog} /> } />
-        <Route exact path="/myplaydates" element={ <MyPlayDatesContainer user={user}/> } />
+        <Route exact path="/playdates" element={<PlaydatesContainer user={user} requestedDogs={requestedDogs} onRemoveRequestedDog={onRemoveRequestedDog} /> } />
+        <Route exact path="/myplaydates" element={ <MyPlaydatesContainer user={user}/> } />
       </Routes>
       <Footer />
     </BrowserRouter>

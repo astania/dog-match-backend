@@ -5,23 +5,23 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from "react-router-dom";
 // import { LinkContainer } from 'react-router-bootstrap'
 
-const style = {
-    width: "60%",
-    margin: "5% 0 1%",
-    padding: "1em",
-    textDecoration: "none",
-    color: "black",
-    verticalAlign: "center"
-}
-const activeStyle = {
-    width: "60%",
-    margin: "5% 0 1%",
-    padding: "1em",
-    color: "black",
-    fontWeight: "bold",
-    verticalAlign: "center",
-    textDecoration: "underline",
-};
+// const style = {
+//     width: "60%",
+//     margin: "5% 0 1%",
+//     padding: "1em",
+//     textDecoration: "none",
+//     color: "black",
+//     verticalAlign: "center"
+// }
+// const activeStyle = {
+//     width: "60%",
+//     margin: "5% 0 1%",
+//     padding: "1em",
+//     color: "black",
+//     fontWeight: "bold",
+//     verticalAlign: "center",
+//     textDecoration: "underline",
+// };
 
 const NavBar = () => {
     return (

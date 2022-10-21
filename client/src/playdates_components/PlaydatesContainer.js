@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import MiniDogCard from './MiniDogCard'
 import Container from 'react-bootstrap/Container';
 
-const PlayDatesContainer = ({ user, requestedDogs, onRemoveRequestedDog }) => {
+const PlaydatesContainer = ({ user, requestedDogs, onRemoveRequestedDog }) => {
   const requestedDogIds = requestedDogs.map(dog => dog.id)
   const blankPlaydateInput = {
     date: "",
@@ -81,7 +81,7 @@ const PlayDatesContainer = ({ user, requestedDogs, onRemoveRequestedDog }) => {
   )
 }
 
-export default PlayDatesContainer
+export default PlaydatesContainer
 
 
 
