@@ -1,5 +1,6 @@
 import { React, useState } from 'react'
 import MiniDogCard from './MiniDogCard'
+import Container from 'react-bootstrap/Container';
 
 const PlayDatesContainer = ({ user, requestedDogs, onRemoveRequestedDog }) => {
   const requestedDogIds = requestedDogs.map(dog => dog.id)
@@ -44,7 +45,7 @@ const PlayDatesContainer = ({ user, requestedDogs, onRemoveRequestedDog }) => {
 
 
   return (
-    
+    <Container>
     <div className="text-center">
       <form onSubmit={sendPlaydateRequest}>
         <h5>Request a playdate!</h5>
@@ -76,6 +77,7 @@ const PlayDatesContainer = ({ user, requestedDogs, onRemoveRequestedDog }) => {
       </form>
 
     </div>
+    </Container>
   )
 }
 

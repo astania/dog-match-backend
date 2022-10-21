@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 
 
 const DogCard = ({dog, onAddRequestedDog, onRemoveRequestedDog, requestedDogs}) => {
@@ -26,7 +26,7 @@ const DogCard = ({dog, onAddRequestedDog, onRemoveRequestedDog, requestedDogs}) 
       </Card.Text>
     </Card.Body>
     <Card.Body>
-    {requestedDogIds.includes(dog.id) ? <Card.Link href="#" className="card-link" onClick={() => onRemoveDog()}>remove from playdate request form</Card.Link> : <Card.Link href="#" className="card-link" onClick={() => onAddDog()}>Add to playdate request form</Card.Link>}
+    {requestedDogIds.includes(dog.id) ? <Button href="#" className="card-link" onClick={() => onRemoveDog()}>remove from playdate request</Button> : <Button href="#" className="card-link" onClick={() => onAddDog()}>Add to playdate request form</Button>}
       {/* <Card.Link href="#">Card Link</Card.Link>
       <Card.Link href="#">Another Link</Card.Link> */}
     </Card.Body>

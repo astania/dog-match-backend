@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import ProfileEditForm from './ProfileEditForm'
 import DogContainer from '../user_dog_components/DogContainer'
+import Container from 'react-bootstrap/Container';
 
 
 const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser, onEditDog, onDeleteDog }) => {
@@ -27,21 +28,23 @@ const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser, onEditDog, on
 
     if (user.first_name) {
         return (
-            <div className="text-center">
-                <img src={user.profile_pic} alt="profile" height="200" />
-                <h3>{user.first_name} {user.last_name}</h3>
-                <h5>Bio:</h5>
-                <p>{user.about_me}</p>
-                <Button className="btn btn-primary mb-3"onClick={handleEditClick}>{toggleEdit ? "x" : "edit profile"}</Button>
-                <Button className="btn btn-secondary mb-3" onClick={handleLogout}>Logout</Button>
-                <br></br>
-                <Button className="btn btn-secondary mb-3" onClick={handleDelete}>Delete Profile</Button>
-                {toggleEdit ? <ProfileEditForm user={user} setUser={setUser} onLogin={onLogin} setToggleEdit={setToggleEdit} /> : ""}
-                <h5>My Dogs:</h5>
-                <DogContainer dogs={user.dogs} onEditDog={onEditDog} onDeleteDog={onDeleteDog} />
-                
-                
-            </div>
+            <Container>
+                <div className="text-center">
+                    <img src={user.profile_pic} alt="profile" height="200" />
+                    <h3>{user.first_name} {user.last_name}</h3>
+                    <h5>Bio:</h5>
+                    <p>{user.about_me}</p>
+                    <Button className="btn btn-primary mb-3" onClick={handleEditClick}>{toggleEdit ? "x" : "edit profile"}</Button>
+                    <Button className="btn btn-secondary mb-3" onClick={handleLogout}>Logout</Button>
+                    <br></br>
+                    <Button className="btn btn-secondary mb-3" onClick={handleDelete}>Delete Profile</Button>
+                    {toggleEdit ? <ProfileEditForm user={user} setUser={setUser} onLogin={onLogin} setToggleEdit={setToggleEdit} /> : ""}
+                    <h5>My Dogs:</h5>
+                    <DogContainer dogs={user.dogs} onEditDog={onEditDog} onDeleteDog={onDeleteDog} />
+
+
+                </div>
+            </Container>
         )
     } else {
         return (
@@ -51,7 +54,6 @@ const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser, onEditDog, on
             </div>
         )
     }
-
 }
 
 export default Profile

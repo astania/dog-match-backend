@@ -2,6 +2,9 @@ import React from 'react'
 import { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
 const SignUpForm = ({ setIsNewUser, onLogin }) => {
     const [confirmPassword, setConfirmPassword] = useState("")
@@ -54,51 +57,57 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
     }
 
     return (
-        <div className="text-center">
-            <h4>Create an account:</h4>
+        <Container>
+            <div className="text-center">
+                <h4>Create an account:</h4>
 
-            <Form className="mb-4" onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" >
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" name="username" value={userInput.username} onChange={handleChange} />
-                </Form.Group>
+                <Form className="mb-4" onSubmit={handleSubmit}>
 
-                <Form.Group className="mb-3" >
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" name="password" value={userInput.password} onChange={handleChange} />
-                </Form.Group>
+                    <Form.Group className="mb-3"  >
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="text" name="username" value={userInput.username} onChange={handleChange} placeholder="name@email.com" />
+                    </Form.Group>
 
-                <Form.Group className="mb-3" >
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control type="password" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                </Form.Group>
+                    <Row className="mb-3">
+                        <Form.Group as={Col}  >
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" name="password" value={userInput.password} onChange={handleChange} placeholder="*****" />
+                        </Form.Group>
 
-                {passwordDoesNotMatch ? <b><em>password must match</em></b> : ""}
+                        <Form.Group as={Col} >
+                            <Form.Label>Confirm Password</Form.Label>
+                            <Form.Control type="password" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                        </Form.Group>
+                    </Row>
 
-                <Form.Group className="mb-3" >
-                    <Form.Label>First Name</Form.Label>
-                    <Form.Control type="text" name="first_name" value={userInput.first_name} onChange={handleChange} />
-                </Form.Group>
+                    {passwordDoesNotMatch ? <b><em>password must match</em></b> : ""}
+                    <Row className="mb-3">
+                        <Form.Group as={Col} >
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control type="text" name="first_name" value={userInput.first_name} onChange={handleChange} placeholder="First Name" />
+                        </Form.Group>
 
-                <Form.Group className="mb-3" >
-                    <Form.Label>Last Name</Form.Label>
-                    <Form.Control type="text" name="last_name" value={userInput.last_name} onChange={handleChange} />
-                </Form.Group>
+                        <Form.Group as={Col} >
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control type="text" name="last_name" value={userInput.last_name} onChange={handleChange} placeholder="Last Name" />
+                        </Form.Group>
+                    </Row>
 
-                <Form.Group className="mb-3" >
-                    <Form.Label>Profile Pic URL</Form.Label>
-                    <Form.Control type="text" name="profile_pic" value={userInput.profile_pic} onChange={handleChange} />
-                </Form.Group>
+                    <Form.Group className="mb-3" >
+                        <Form.Label>Profile Pic URL</Form.Label>
+                        <Form.Control type="text" name="profile_pic" value={userInput.profile_pic} onChange={handleChange} placeholder="https://i.imgur.com/GuAB8OE.jpeg" />
+                    </Form.Group>
 
-                <Form.Group className="mb-3" >
-                    <Form.Label>About me</Form.Label>
-                    <Form.Control as="textarea" rows="4" placeholder="Briefly describe yourself!" name="about_me" value={userInput.about_me} onChange={handleChange} />
-                </Form.Group>
+                    <Form.Group className="mb-3" >
+                        <Form.Label>About me</Form.Label>
+                        <Form.Control as="textarea" rows="4" placeholder="Briefly describe yourself!" name="about_me" value={userInput.about_me} onChange={handleChange} />
+                    </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    Create Account
-                </Button>
-            </Form>
+                    <Button variant="primary" type="submit">
+                        Create Account
+                    </Button>
+                </Form>
+        
             {/* <form onSubmit={handleSubmit}>
                 
                 <div className="form-control">
@@ -142,7 +151,8 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
 
             <h4>Already have an account?</h4>
             <button class="btn btn-secondary mb-4" onClick={() => setIsNewUser(false)}>Login</button>
-        </div>
+        </div >
+        </Container>
     )
 }
 
