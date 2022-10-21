@@ -27,17 +27,20 @@ const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser, onEditDog, on
 
     if (user.first_name) {
         return (
-            <div>
+            <div className="text-center">
                 <img src={user.profile_pic} alt="profile" height="200" />
                 <h3>{user.first_name} {user.last_name}</h3>
                 <h5>Bio:</h5>
                 <p>{user.about_me}</p>
-                <Button onClick={handleEditClick}>{toggleEdit ? "x" : "edit profile"}</Button>
+                <Button className="btn btn-primary mb-3"onClick={handleEditClick}>{toggleEdit ? "x" : "edit profile"}</Button>
+                <Button className="btn btn-secondary mb-3" onClick={handleLogout}>Logout</Button>
+                <br></br>
+                <Button className="btn btn-secondary mb-3" onClick={handleDelete}>Delete Profile</Button>
                 {toggleEdit ? <ProfileEditForm user={user} setUser={setUser} onLogin={onLogin} setToggleEdit={setToggleEdit} /> : ""}
                 <h5>My Dogs:</h5>
                 <DogContainer dogs={user.dogs} onEditDog={onEditDog} onDeleteDog={onDeleteDog} />
-                <Button onClick={handleLogout}>Logout</Button>
-                <Button className="btn btn-secondary" onClick={handleDelete}>Delete Profile</Button>
+                
+                
             </div>
         )
     } else {

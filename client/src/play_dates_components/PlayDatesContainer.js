@@ -44,7 +44,8 @@ const PlayDatesContainer = ({ user, requestedDogs, onRemoveRequestedDog }) => {
 
 
   return (
-    <div>
+    
+    <div className="text-center">
       <form onSubmit={sendPlaydateRequest}>
         <h5>Request a playdate!</h5>
         <div className="form-group">
@@ -65,7 +66,7 @@ const PlayDatesContainer = ({ user, requestedDogs, onRemoveRequestedDog }) => {
         </div>
         {requestedDogs.length > 0 ? <label>Requested Dogs
           {requestedDogs.map((dog, index) => <MiniDogCard dog={dog} key={dog.id} index={index} onRemoveRequestedDog={onRemoveRequestedDog} />)}
-        </label> : <em> Go to the Dogs tab to add some playmates!</em>}
+        </label> : <b><em> Go to the Dogs tab to add some playmates!</em></b>}
 
         <div className="form-group">
           <label >Notes:</label>

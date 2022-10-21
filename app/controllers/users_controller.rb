@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def show
     find_user
     if @user
-      render json: @user, include: ['dogs', 'dogs.requested_playdates', 'dogs.hosted_playdates']
+      render json: @user, include: ['dogs', 'dogs.requested_playdates', 'playdates', 'dogs.hosted_playdates', 'dogs.requested_playdates.dog']
     else
       render json: { error: "Not authorized" }, status: :unauthorized
     end
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   end 
 
   def user_params 
-    params.require(:user).permit(:username, :password, :first_name, :last_name, :about_me, :profile_pic)
+    params.permit(:username, :password, :first_name, :last_name, :about_me, :profile_pic)
   end 
   
 

@@ -1,4 +1,8 @@
 import { NavLink } from 'react-router-dom'
+// import Container from 'react-bootstrap/Container';
+// import Nav from 'react-bootstrap/Nav';
+// import Navbar from 'react-bootstrap/Navbar';
+// import { LinkContainer } from 'react-router-bootstrap'
 
 const style = {
     width: "60%",
@@ -20,7 +24,7 @@ const activeStyle = {
 
 const NavBar = () => {
     return (
-        <div>
+        <div className="mb-3">
             <NavLink
                 style={({ isActive }) => isActive ? activeStyle : style}
                 to="/" end
@@ -52,3 +56,20 @@ const NavBar = () => {
 }
 
 export default NavBar;
+
+
+
+// {/* <Navbar bg="primary" variant="dark">
+// <LinkContainer>
+//     <Navbar.Brand href="/">DogMatch</Navbar.Brand>
+//     <Nav className="me-auto">
+//     {/* <LinkContainer to="/">Home!</LinkContainer> */}
+//         <Nav.Link href="/">Home</Nav.Link>
+//         <Nav.Link href="/alldogs">Find Playmates</Nav.Link>
+//         <Nav.Link href="/playdates">Playdate Request Form</Nav.Link>
+//         <Nav.Link href="/myplaydates">My Playdates</Nav.Link>
+//         <Nav.Link href="/adddog">Add Dogs</Nav.Link>
+//         <Nav.Link href="/profile">Profile</Nav.Link>
+//     </Nav>
+// </LinkContainer>
+// </Navbar> */}

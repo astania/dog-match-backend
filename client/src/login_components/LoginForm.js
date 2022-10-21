@@ -37,13 +37,13 @@ const LoginForm = ({ onLogin, setIsNewUser, user, setUser }) => {
         <div className="text-center">
             <h4>Log in below:</h4>
 
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
+            <form className="mb-4" onSubmit={handleSubmit}>
+                <div className="form-group mb-1">
                     <label> Username
                         <input className="form-control" type="text" name="username" placeholder="name@example.com" value={user.username} onChange={handleChange} />
                     </label>
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-1">
                     <label> Password
                         <input className="form-control" type="text" name="password" placeholder="*****" value={user.password} onChange={handleChange} />
                     </label>
@@ -51,7 +51,7 @@ const LoginForm = ({ onLogin, setIsNewUser, user, setUser }) => {
 
                 <button className="btn btn-primary" type="submit" value="Login">Login</button>
             </form>
-            <h4>Are you new here? Create an account below:</h4>
+            <h4 className="mb-4">Are you new here? Create an account below:</h4>
             <button className="btn btn-secondary" onClick={() => setIsNewUser(true)}>Create Account</button>
 
 
