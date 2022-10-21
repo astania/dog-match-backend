@@ -4,7 +4,7 @@ import DogCard from './DogCard'
 const DogContainer = ({ dogs, onEditDog, onDeleteDog }) => {
 
     return (
-        <div>
+        <div className="card-deck">
             {dogs.map((dog, index) => <DogCard dog={dog} key={index} onEditDog={onEditDog} onDeleteDog={onDeleteDog} />)}
         </div>
     )

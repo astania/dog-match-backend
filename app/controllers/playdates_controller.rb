@@ -19,7 +19,7 @@ class PlaydatesController < ApplicationController
     def show
       find_playdate
       if @playdate
-        render json: @playdate,
+        render json: @playdate
       else
         render json: { error: "Not authorized" }, status: :unauthorized
       end

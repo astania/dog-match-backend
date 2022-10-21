@@ -1,4 +1,5 @@
 import React from 'react'
+import welcomeImage from './frontpageimage.jpg'
 
 const WelcomePage = ({user}) => {
   
@@ -6,10 +7,11 @@ const WelcomePage = ({user}) => {
  
 
   return (
-    <div>
+    <div className="text-center">
       
-      <h2>Welcome, {user.first_name}!</h2>
-      <p>Go to your profile to add your dogs, or go to the Dogs tab to see the dogs</p>
+      <h2 className="text-center">Welcome, {user.first_name}!</h2>
+      <p className="text-center" >Go to your profile to add your dogs, or go to the Dogs tab to see the dogs</p>
+      <img src={welcomeImage} alt="Dogs in a park" height="400"></img>
       </div>
   )
 }
