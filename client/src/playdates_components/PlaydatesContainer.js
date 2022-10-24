@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import MiniDogCard from './MiniDogCard'
 import Container from 'react-bootstrap/Container';
 
-const PlaydatesContainer = ({ user, requestedDogs, onRemoveRequestedDog }) => {
+const PlaydatesContainer = ({ user, requestedDogs, onRemoveRequestedDog, onRequestPlaydate }) => {
   const requestedDogIds = requestedDogs.map(dog => dog.id)
   const blankPlaydateInput = {
     date: "",
@@ -38,7 +38,7 @@ const PlaydatesContainer = ({ user, requestedDogs, onRemoveRequestedDog }) => {
     })
       .then(res => {
         if (res.ok) {
-          res.json().then(playdateInfo => console.log(playdateInfo))
+          res.json().then(playdateInfo => onRequestPlaydate(playdateInfo))
         }
       })
   }
@@ -46,37 +46,36 @@ const PlaydatesContainer = ({ user, requestedDogs, onRemoveRequestedDog }) => {
 
   return (
     <Container>
-    <div className="text-center">
-      <form onSubmit={sendPlaydateRequest}>
-        <h5>Request a playdate!</h5>
-        <div className="form-group">
-          <label> Which dog do you want to create the playdate for?
-            <select className="form-select" name="dog_id" defaultValue="" onChange={handleChange}>
-              <option value="" disabled>Select your dog</option>
-              {userDogs.map(dog => <option key={dog.id} value={dog.id}>{dog.name}</option>)}
-            </select>
-          </label>
-        </div>
-        <div className="form-group">
-          <label>Playdate Date
-            <input type="text" className="form-control" name="date" value={playdateRequest.date} onChange={handleChange} placeholder="November 19" />
-          </label>
-          <label>Playdate Time
-            <input type="text" className="form-control" name="time" value={playdateRequest.time} onChange={handleChange} placeholder="3:30pm" />
-          </label>
-        </div>
-        {requestedDogs.length > 0 ? <label>Requested Dogs
-          {requestedDogs.map((dog, index) => <MiniDogCard dog={dog} key={dog.id} index={index} onRemoveRequestedDog={onRemoveRequestedDog} />)}
-        </label> : <b><em> Go to the Dogs tab to add some playmates!</em></b>}
+      <div className="text-center">
+        <form onSubmit={sendPlaydateRequest}>
+          <h5>Request a playdate!</h5>
+          <div className="form-group">
+            <label> Which dog do you want to create the playdate for?
+              <select className="form-select" name="dog_id" defaultValue="" onChange={handleChange}>
+                <option value="" disabled>Select your dog</option>
+                {userDogs.map(dog => <option key={dog.id} value={dog.id}>{dog.name}</option>)}
+              </select>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>Playdate Date
+              <input type="text" className="form-control" name="date" value={playdateRequest.date} onChange={handleChange} placeholder="November 19" />
+            </label>
+            <label>Playdate Time
+              <input type="text" className="form-control" name="time" value={playdateRequest.time} onChange={handleChange} placeholder="3:30pm" />
+            </label>
+          </div>
+          {requestedDogs.length > 0 ? <label>Requested Dogs
+            {requestedDogs.map((dog, index) => <MiniDogCard dog={dog} key={dog.id} index={index} onRemoveRequestedDog={onRemoveRequestedDog} />)}
+          </label> : <b><em> Go to the Dogs tab to add some playmates!</em></b>}
+          <div className="form-group">
+            <label >Notes:</label>
+            <textarea className="form-control" name="notes" value={playdateRequest.notes} onChange={handleChange} rows="3" placeholder="Describe what you would like to do! Any likes/dislikes?"></textarea>
+          </div>
+          <button className="btn btn-primary" type="submit">Request Playdate!</button>
+        </form>
 
-        <div className="form-group">
-          <label >Notes:</label>
-          <textarea className="form-control" name="notes" value={playdateRequest.notes} onChange={handleChange} rows="3" placeholder="Describe what you would like to do! Any likes/dislikes?"></textarea>
-        </div>
-        <button className="btn btn-primary" type="submit">Request Playdate!</button>
-      </form>
-
-    </div>
+      </div>
     </Container>
   )
 }
@@ -97,14 +96,14 @@ export default PlaydatesContainer
 
 
 
-  
+
 
   //add playdate ID for PDRD after the playdate is created
   // const playdateRequestedDogsInput = requestedDogs.map(dog => ({ playdate_id: playdateId, dog_id: dog.id }))
 
   // console.log(playdateRequestedDogsInput)
 // const [playdateId, setPlaydateId] = useState("")
- //send POST request for each PDRD  
+ //send POST request for each PDRD
   //  const sendPDRD = () => {
   //   playdateRequestedDogsInput.forEach(input => {
   //     fetch("/playdate_requested_dogs", {
@@ -116,4 +115,3 @@ export default PlaydatesContainer
   //     }).then(res => res.json()).then(info => console.log(info))
   //   })
   // }
-  

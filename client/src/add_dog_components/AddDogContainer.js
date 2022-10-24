@@ -1,9 +1,14 @@
 import React from 'react'
 import AddDogForm from './AddDogForm'
+import Container from 'react-bootstrap/Container'
 
-const AddDogContainer = ({user, onAddDog}) => {
+const AddDogContainer = ({ user, onAddDog }) => {
   return (
-    <div><AddDogForm user={user} onAddDog={onAddDog}/> </div>
+    
+    <Container>
+      <h5 className="mb-3" >Add a Dog!</h5>
+      <AddDogForm user={user} onAddDog={onAddDog} />
+    </Container>
   )
 }
 

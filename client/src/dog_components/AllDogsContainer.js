@@ -15,3 +15,4 @@ const AllDogsContainer = ({ allDogs, user, onAddRequestedDog, onRemoveRequestedD
 }
 
 export default AllDogsContainer
+

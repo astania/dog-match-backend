@@ -39,12 +39,12 @@ function App() {
     });
   }, []);
 
-  console.log("user", user)
+  // console.log("user", user)
 
   useEffect(() => {
     fetch("/dogs")
-    .then(r => r.json())
-    .then(fetchedDogs => setAllDogs(fetchedDogs)) 
+      .then(r => r.json())
+      .then(fetchedDogs => setAllDogs(fetchedDogs))
   }, [])
 
   const onLogin = (userInfo) => {
@@ -64,36 +64,46 @@ function App() {
 
   const onEditDog = (updatedDog) => {
     const updatedDogArray = user.dogs.map(dog => dog.id == updatedDog.id ? updatedDog : dog)
-    setUser({...user, dogs: updatedDogArray})
+    setUser({ ...user, dogs: updatedDogArray })
     const updatedDogs = allDogs.map(dog => dog.id == updatedDog.id ? updatedDog : dog)
     setAllDogs(updatedDogs)
   }
 
   const onAddDog = (newDog) => {
     const newDogs = [...user.dogs, newDog]
-    setUser({...user, dogs: newDogs})
+    setUser({ ...user, dogs: newDogs })
     setAllDogs([...allDogs, newDog])
   }
 
   const onDeleteDog = (id) => {
     const filteredDogs = user.dogs.filter(dog => dog.id !== id)
-    setUser({...user, dogs: filteredDogs})
+    setUser({ ...user, dogs: filteredDogs })
   }
 
   const onAddRequestedDog = (dog) => {
     const requestedDogIds = requestedDogs.map(dog => dog.id)
-    console.log("requested dog ids:",requestedDogIds)
-    if(!requestedDogIds.includes(dog.id)){
+    console.log("requested dog ids:", requestedDogIds)
+    if (!requestedDogIds.includes(dog.id)) {
       setRequestedDogs([...requestedDogs, dog])
     } else {
       console.log("oops! dog already added")
     }
   }
 
+  const onRequestPlaydate = (playdate) => {
+    const updatedUser = { ...user }
+    const hostDog = user.dogs.find(dog => dog.id == playdate.host_dog.id)
+    hostDog.hosted_playdates = [...hostDog.hosted_playdates, playdate]
+    const updatedDogs = user.dogs.map(dog => dog.id == hostDog.id ? hostDog : dog)
+    updatedUser.dogs = updatedDogs
+    setUser(updatedUser)
+
+  }
+
   const onRemoveRequestedDog = (dog) => {
     const removedDogs = requestedDogs.filter(req => req.id !== dog.id)
     setRequestedDogs(removedDogs)
-    
+
   }
 
   return (
@@ -103,11 +113,11 @@ function App() {
       <Routes>
         <Route exact path="/" element={!!loggedIn ? <WelcomePage user={user} /> : <Login user={user} setUser={setUser} onLogin={onLogin} />} />
         <Route exact path="/login" element={<Login onLogin={onLogin} />} />
-        <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs} user={user} onAddRequestedDog={onAddRequestedDog} onRemoveRequestedDog={onRemoveRequestedDog} requestedDogs={requestedDogs}/>} />
-        <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser} onEditDog={onEditDog} onDeleteDog={onDeleteDog}/>} />
-        <Route exact path="/adddog" element={<AddDogContainer user={user} onAddDog={onAddDog}/>} />
-        <Route exact path="/playdates" element={<PlaydatesContainer user={user} requestedDogs={requestedDogs} onRemoveRequestedDog={onRemoveRequestedDog} /> } />
-        <Route exact path="/myplaydates" element={ <MyPlaydatesContainer user={user}/> } />
+        <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs} user={user} onAddRequestedDog={onAddRequestedDog} onRemoveRequestedDog={onRemoveRequestedDog} requestedDogs={requestedDogs} />} />
+        <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser} onEditDog={onEditDog} onDeleteDog={onDeleteDog} />} />
+        <Route exact path="/adddog" element={<AddDogContainer user={user} onAddDog={onAddDog} />} />
+        <Route exact path="/playdates" element={<PlaydatesContainer user={user} requestedDogs={requestedDogs} onRemoveRequestedDog={onRemoveRequestedDog} onRequestPlaydate={onRequestPlaydate} />} />
+        <Route exact path="/myplaydates" element={<MyPlaydatesContainer user={user} />} />
       </Routes>
       <Footer />
     </BrowserRouter>
