@@ -77,7 +77,9 @@ function App() {
 
   const onDeleteDog = (id) => {
     const filteredDogs = user.dogs.filter(dog => dog.id !== id)
+    const filteredAllDogs = allDogs.filter(dog => dog.id !== id)
     setUser({ ...user, dogs: filteredDogs })
+    setAllDogs(filteredAllDogs)
   }
 
   const onAddRequestedDog = (dog) => {
