@@ -1,8 +1,8 @@
 import {React, useState} from 'react'
 import PlaydateCard from './PlaydateCard'
 import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
+// import Row from 'react-bootstrap/Row';
 
 const MyPlaydatesContainer = ({ user }) => {
 

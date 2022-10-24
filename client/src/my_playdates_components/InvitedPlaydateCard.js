@@ -2,18 +2,11 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
 import InvitedDogCard from './InvitedDogCard'
+import CardGroup from 'react-bootstrap/CardGroup';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 const InvitedPlaydateCard = ({ playdate }) => {
-
-    // useEffect(() => {
-    //     fetch(`/dogs/${dog.id}`).then((response) => {
-    //       if (response.ok) {
-    //         response.json().then((dogInfo) => setInvitedPlaydates(dogInfo.requested_playdates))
-    //       }
-    //     });
-    //   }, []);
-
-    //   console.log("inv", invitedPlaydates)
 
 
     return (
@@ -30,9 +23,13 @@ const InvitedPlaydateCard = ({ playdate }) => {
                         <p>{playdate.notes}</p>
 
                         <b>Who Else is Coming:</b>
-                        <div style={{ display: 'flex', flexDirection: 'row' }}>
-                            {playdate.invited_dogs.map((dog) => <InvitedDogCard key={dog.id} dog={dog} />)}
-                        </div>
+                        <CardGroup>
+                            {/* <div style={{ display: 'flex', flexDirection: 'row' }}> */}
+                            <Row xs={1} md={2} className="g-1">
+                                {playdate.invited_dogs.map((dog) => <Col sm='1'> <InvitedDogCard key={dog.id} dog={dog} /> </Col>) }
+                            </Row>
+                            {/* </div> */}
+                        </CardGroup>
 
                     </Card.Text>
 
