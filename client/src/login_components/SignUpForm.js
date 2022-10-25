@@ -11,7 +11,7 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
     // const [passwordDoesNotMatch, setPasswordDoesNotMatch] = useState(false)
     const [errors, setErrors] = useState([])
 
-    console.log("errors", errors)
+    // console.log("errors", errors)
 
     const blankUserTemplate = {
         username: "",
