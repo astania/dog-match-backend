@@ -20,17 +20,13 @@ class PlaydatesController < ApplicationController
       find_playdate
       if @playdate
         render json: @playdate
-      else
-        render json: { error: "Not authorized" }, status: :unauthorized
       end
     end
   
     def update 
       find_playdate
-      if @playdate&.update(playdate_params) 
+      if @playdate&.update!(playdate_params) 
         render json: @playdate, include: :dogs
-      else 
-        render json: {error: "Playdate not found"}, status: :not_found
       end 
     end 
   

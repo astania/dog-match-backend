@@ -19,17 +19,13 @@ class PlaydateRequestedDogsController < ApplicationController
       find_playdate_requested_dog
       if @playdate_requested_dog
         render json: @playdate_requested_dog
-      else
-        render json: { error: "Not authorized" }, status: :unauthorized
       end
     end
   
     def update 
       find_playdate_requested_dog
-      if @playdate_requested_dog&.update(playdate_requested_dog_params) 
+      if @playdate_requested_dog&.update!(playdate_requested_dog_params) 
         render json: @playdate_requested_dog
-      else 
-        render json: {error: "Not found"}, status: :not_found
       end 
     end 
   
@@ -37,8 +33,6 @@ class PlaydateRequestedDogsController < ApplicationController
       find_playdate_requested_dog
       if @dog&.destroy 
         render json: {messages: "Record successfully destroyed"}
-      else 
-        render json: {error: "Not found"}, status: :not_found
       end 
     end  
   

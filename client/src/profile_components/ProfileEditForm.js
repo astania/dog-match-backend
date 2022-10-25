@@ -17,9 +17,7 @@ const ProfileEditForm = ({ user, onLogin, setToggleEdit }) => {
             ...updatedUser, [name]: value
         })
     }
-    console.log("errors", errors)
-    console.log("user", user)
-    console.log("updated user", updatedUser)
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -39,7 +37,7 @@ const ProfileEditForm = ({ user, onLogin, setToggleEdit }) => {
 
                 } else {
                     res.json().then((errorData) => setErrors(errorData.errors))
-                    
+
                 }
             })
     }
@@ -48,33 +46,40 @@ const ProfileEditForm = ({ user, onLogin, setToggleEdit }) => {
     return (
         <Container>
 
-            <Form onSubmit={handleSubmit} className=" col-10 text-center">
+            <Form onSubmit={handleSubmit} className="text-center">
                 <h5>Update your Account</h5>
 
-                <Form.Group className="col-5 mb-3" >
+                <Form.Group className="mb-3" >
                     <Form.Label>Username</Form.Label>
                     <Form.Control type="text" name="username" value={updatedUser.username} onChange={handleChange} />
                 </Form.Group>
 
-                <Form.Group className="col-5 mb-3" >
+                <Form.Group className="mb-3" >
                     <Form.Label>First Name</Form.Label>
                     <Form.Control type="text" name="first_name" value={updatedUser.first_name} onChange={handleChange} />
                 </Form.Group>
 
-                <Form.Group className="col-5 mb-3" >
+                <Form.Group className="mb-3" >
                     <Form.Label>Last Name</Form.Label>
                     <Form.Control type="text" name="last_name" value={updatedUser.last_name} onChange={handleChange} />
                 </Form.Group>
 
-                <Form.Group className="col-5 mb-3" >
+                <Form.Group className="mb-3" >
                     <Form.Label>Profile Pic URL</Form.Label>
                     <Form.Control type="text" name="profile_pic" value={updatedUser.profile_pic} onChange={handleChange} />
                 </Form.Group>
 
-                <Form.Group className="col-5 mb-3" >
+                <Form.Group className="mb-3" >
                     <Form.Label>About me</Form.Label>
                     <Form.Control as="textarea" rows="4" placeholder="Briefly describe yourself!" name="about_me" value={updatedUser.about_me} onChange={handleChange} />
                 </Form.Group>
+                {errors.length > 0 ?
+                    <div style={{ color: "red" }} className="mb-3">
+                        {errors.map((error) => (
+                            <li key={error}> {error} </li>
+                        ))}
+                    </div>
+                    : ""}
 
                 <Button variant="primary" type="submit">
                     Save Changes

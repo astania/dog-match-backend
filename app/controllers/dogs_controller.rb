@@ -19,17 +19,13 @@ class DogsController < ApplicationController
     find_dog
     if @dog
       render json: @dog
-    else
-      render json: { error: "Not authorized" }, status: :unauthorized
     end
   end
 
   def update 
     find_dog
-    if @dog&.update(dog_params) 
+    if @dog&.update!(dog_params) 
       render json: @dog
-    else 
-      render json: {error: "Dog not found"}, status: :not_found
     end 
   end 
 
@@ -37,8 +33,6 @@ class DogsController < ApplicationController
     find_dog
     if @dog&.destroy 
       render json: {messages: "Record successfully destroyed"}
-    else 
-      render json: {error: "Dog not found"}, status: :not_found
     end 
   end 
 

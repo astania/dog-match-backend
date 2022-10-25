@@ -9,26 +9,19 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       render json: user, status: :created
     end
-    # rescue ActiveRecord::RecordInvalid => e
-    #   render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
-
   end
   
   def show
     find_user
     if @user
       render json: @user, include: ['dogs', 'dogs.requested_playdates', 'dogs.hosted_playdates']
-    else
-      render json: { error: "Not authorized" }, status: :unauthorized
     end
   end
 
   def update 
     find_user
-    if @user&.update(user_params) 
+    if @user&.update!(user_params) 
       render json: @user, include: ['dogs', 'dogs.requested_playdates', 'dogs.hosted_playdates'] 
-    else 
-      render json: {error: "User not updated"}, status: :not_found
     end 
   end 
 
@@ -36,8 +29,6 @@ class UsersController < ApplicationController
     find_user
     if @user&.destroy 
       render json: {messages: "Record successfully destroyed"}
-    else 
-      render json: {error: "User not found"}, status: :not_found
     end 
   end 
 
