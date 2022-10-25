@@ -11,8 +11,6 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
     // const [passwordDoesNotMatch, setPasswordDoesNotMatch] = useState(false)
     const [errors, setErrors] = useState([])
 
-    // console.log("errors", errors)
-
     const blankUserTemplate = {
         username: "",
         password: "",
@@ -35,7 +33,6 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
 
     function handleSubmit(e) {
         e.preventDefault()
-        // console.log("new user", userInput)
         // if (userInput.password === confirmPassword) {
         //     setPasswordDoesNotMatch(false)
         fetch("/users", {

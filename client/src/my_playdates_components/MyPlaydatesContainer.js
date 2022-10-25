@@ -7,9 +7,6 @@ const MyPlaydatesContainer = ({ user }) => {
 
   const userDogs = user.dogs
 
-  console.log(userDogs.length)
-
-  
   return (
 
     <Container>

@@ -26,13 +26,9 @@ const DogEditForm = ({ dog, onEditDog, setEditDog }) => {
         })
             .then(res => {
                 if (res.ok) {
-                    // res.json().then(dogInfo => onEditDog(dogInfo))
                     res.json().then(dogInfo => onEditDog(dogInfo)).then(setEditDog(false))
-                    // res.json().then(dogInfo => console.log(dogInfo))
 
                 } else {
-                    // res.json().then( e => setErrors(Object.entries(e.error).flat()))
-                    // res.json().then( e => console.log("Errors:", e))
                     console.log("error")
                 }
             })

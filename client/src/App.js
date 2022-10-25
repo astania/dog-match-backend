@@ -1,16 +1,16 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState, useEffect } from "react";
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Login from "./login_components/Login";
-import WelcomePage from "./login_components/WelcomePage";
-import Footer from "./navigation_components/Footer";
-import Header from "./navigation_components/Header";
-import Profile from "./profile_components/Profile";
-import NavBar from "./navigation_components/NavBar";
-import AllDogsContainer from "./dog_components/AllDogsContainer";
-import AddDogContainer from "./add_dog_components/AddDogContainer";
-import PlaydatesContainer from "./playdates_components/PlaydatesContainer";
-import MyPlaydatesContainer from "./my_playdates_components/MyPlaydatesContainer";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { useState, useEffect } from "react"
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import Login from "./login_components/Login"
+import WelcomePage from "./login_components/WelcomePage"
+import Footer from "./navigation_components/Footer"
+import Header from "./navigation_components/Header"
+import Profile from "./profile_components/Profile"
+import NavBar from "./navigation_components/NavBar"
+import AllDogsContainer from "./dog_components/AllDogsContainer"
+import AddDogContainer from "./add_dog_components/AddDogContainer"
+import PlaydatesContainer from "./create_playdates_components/PlaydatesContainer"
+import MyPlaydatesContainer from "./my_playdates_components/MyPlaydatesContainer"
 
 // sudo service postgresql start
 
@@ -29,36 +29,24 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [allDogs, setAllDogs] = useState([])
   const [requestedDogs, setRequestedDogs] = useState([])
-  
+
 
   useEffect(() => {
     fetch("/me").then((response) => {
       if (response.ok) {
         response.json().then((userInfo) => setUser(userInfo))
           .then(setLoggedIn(true))
-      } else {
-        // response.json().then((errorData) => setErrors(errorData.errors))
-        // // console.log(response)
       }
     })
   }, [])
 
   console.log("user", user)
-  
 
-  // useEffect(() => {
-  //   fetch("/dogs")
-  //     .then(r => r.json())
-  //     .then(fetchedDogs => setAllDogs(fetchedDogs))
-  // }, [])
 
   useEffect(() => {
     fetch("/dogs").then((response) => {
       if (response.ok) {
         response.json().then((fetchedDogs) => setAllDogs(fetchedDogs))
-      } else {
-        // response.json().then((errorData) => setErrors(errorData.errors))
-        // console.log(response)
       }
     })
   }, [])
@@ -93,14 +81,14 @@ function App() {
   }
 
   const onDeleteDog = (id) => {
-    console.log("id:",id)
+    console.log("id:", id)
     const filteredDogs = user.dogs.filter(dog => dog.id !== id)
     const filteredAllDogs = allDogs.filter(dog => dog.id !== id)
-   
-    setUser({...user, dogs: filteredDogs})
+
+    setUser({ ...user, dogs: filteredDogs })
     setAllDogs(filteredAllDogs)
-    
-   
+
+
   }
 
   const onAddRequestedDog = (dog) => {
@@ -114,12 +102,11 @@ function App() {
   }
 
   const onRequestPlaydate = (playdate) => {
-    // const updatedUser = { ...user }
     const hostDog = user.dogs.find(dog => dog.id == playdate.host_dog.id)
     hostDog.hosted_playdates = [...hostDog.hosted_playdates, playdate]
     const updatedDogs = user.dogs.map(dog => dog.id == hostDog.id ? hostDog : dog)
-    // updatedUser.dogs = updatedDogs
-    setUser({...user, dogs: updatedDogs})
+  
+    setUser({ ...user, dogs: updatedDogs })
 
   }
 

@@ -107,37 +107,3 @@ const PlaydatesContainer = ({ user, requestedDogs, setRequestedDogs, onRemoveReq
 }
 
 export default PlaydatesContainer
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //add playdate ID for PDRD after the playdate is created
-  // const playdateRequestedDogsInput = requestedDogs.map(dog => ({ playdate_id: playdateId, dog_id: dog.id }))
-
-  // console.log(playdateRequestedDogsInput)
-// const [playdateId, setPlaydateId] = useState("")
- //send POST request for each PDRD
-  //  const sendPDRD = () => {
-  //   playdateRequestedDogsInput.forEach(input => {
-  //     fetch("/playdate_requested_dogs", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(input),
-  //     }).then(res => res.json()).then(info => console.log(info))
-  //   })
-  // }

@@ -8,9 +8,6 @@ import Row from 'react-bootstrap/Row';
 
 const InvitedPlaydateCard = ({ playdate }) => {
 
-
-    // console.log("playdate",playdate)
-
     return (
         <Container>
             <Card style={{ width: '18rem' }} bg="light">
