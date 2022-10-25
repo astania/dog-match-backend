@@ -1,14 +1,18 @@
 import React from 'react'
 import { useState } from 'react'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/Container'
 
 const SignUpForm = ({ setIsNewUser, onLogin }) => {
-    const [confirmPassword, setConfirmPassword] = useState("")
-    const [passwordDoesNotMatch, setPasswordDoesNotMatch] = useState(false)
+    // const [confirmPassword, setConfirmPassword] = useState("")
+    // const [passwordDoesNotMatch, setPasswordDoesNotMatch] = useState(false)
+    const [errors, setErrors] = useState([])
+
+    console.log("errors", errors)
+
     const blankUserTemplate = {
         username: "",
         password: "",
@@ -31,29 +35,27 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log("new user", userInput)
-        if (userInput.password === confirmPassword) {
-            setPasswordDoesNotMatch(false)
-            fetch("/users", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(userInput),
+        // console.log("new user", userInput)
+        // if (userInput.password === confirmPassword) {
+        //     setPasswordDoesNotMatch(false)
+        fetch("/users", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userInput),
+        })
+            .then(res => {
+                if (res.ok) {
+                    res.json().then(userInfo => onLogin(userInfo))
+                } else {
+                    res.json().then((errorData) => setErrors(errorData.errors))
+                }
             })
-                .then(res => {
-                    if (res.ok) {
-                        res.json().then(userInfo => onLogin(userInfo))
-                    } else {
-                        // res.json().then( e => setErrors(Object.entries(e.error).flat()))
-                        // res.json().then( e => console.log("Errors:", e))
-                        console.log("error")
-                    }
-                })
 
-        } else {
-            setPasswordDoesNotMatch(true)
-        }
+        // }  else {
+        //     setPasswordDoesNotMatch(true)
+        // }
     }
 
     return (
@@ -74,13 +76,13 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
                             <Form.Control type="password" name="password" value={userInput.password} onChange={handleChange} placeholder="*****" />
                         </Form.Group>
 
-                        <Form.Group as={Col} >
+                        {/* <Form.Group as={Col} >
                             <Form.Label>Confirm Password</Form.Label>
                             <Form.Control type="password" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                        </Form.Group>
+                        </Form.Group> */}
                     </Row>
 
-                    {passwordDoesNotMatch ? <b><em>password must match</em></b> : ""}
+                    {/* {passwordDoesNotMatch ? <b><em>password must match</em></b> : ""} */}
                     <Row className="mb-3">
                         <Form.Group as={Col} >
                             <Form.Label>First Name</Form.Label>
@@ -103,55 +105,24 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
                         <Form.Control as="textarea" rows="4" placeholder="Briefly describe yourself!" name="about_me" value={userInput.about_me} onChange={handleChange} />
                     </Form.Group>
 
+                    {errors.length > 0 ?
+                        <div style={{ color: "red" }} className="mb-3">
+                            {errors.map((error) => (
+                                <li key={error}> {error} </li>
+                            ))}
+                        </div>
+                        : ""}
+
                     <Button variant="primary" type="submit">
                         Create Account
                     </Button>
+
                 </Form>
-        
-            {/* <form onSubmit={handleSubmit}>
-                
-                <div className="form-control">
-                    <label> Username:
-                        <input type="text" name="username" value={userInput.username} onChange={handleChange} />
-                    </label>
-                </div>
-                <div className="form-control">
-                    <label> Password:
-                        <input type="text" name="password" value={userInput.password} onChange={handleChange} />
-                    </label>
-                </div>
-                <div className="form-control">
-                    <label> Confirm Password:
-                        <input type="text" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                    </label>
-                    {passwordDoesNotMatch ? <p>password must match</p> : ""}
-                </div>
-                <div className="form-control">
-                    <label> First Name:
-                        <input type="text" name="first_name" value={userInput.first_name} onChange={handleChange} />
-                    </label>
-                    <label> Last Name:
-                        <input type="text" name="last_name" value={userInput.last_name} onChange={handleChange} />
-                    </label>
-                </div>
-                <div className="form-control">
-                    <label> About Me:
-                        <textarea name="about_me" rows="4" cols="50" value={userInput.about_me} onChange={handleChange}></textarea>
-                    </label>
-                </div>
-                <div className="form-control">
-                    <label> Profile Pic URL:
-                        <input type="text" name="profile_pic" value={userInput.profile_pic} onChange={handleChange} />
-                    </label>
-                </div>
 
-                <button className="btn btn-primary" type="submit" value="Login">Create Account</button>
-            </form> */}
+                <h4>Already have an account?</h4>
+                <button className="btn btn-secondary mb-4" onClick={() => setIsNewUser(false)}>Login</button>
 
-
-            <h4>Already have an account?</h4>
-            <button class="btn btn-secondary mb-4" onClick={() => setIsNewUser(false)}>Login</button>
-        </div >
+            </div >
         </Container>
     )
 }

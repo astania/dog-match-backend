@@ -8,8 +8,7 @@ class Playdate < ApplicationRecord
     validates :date, :time, :notes, :dog_id, presence: true  
     
     
-    
-    #!!
+
     
 
 end

@@ -11,7 +11,7 @@ class PlaydatesController < ApplicationController
     def create
       playdate = Playdate.create!(playdate_params)
       if playdate.valid?
-        params[:requested_dogs].each{|dog| PlaydateRequestedDog.create(playdate_id: playdate.id, dog_id: dog)}
+        params[:requested_dogs].each{|dog| PlaydateRequestedDog.create!(playdate_id: playdate.id, dog_id: dog)}
         render json: playdate
       end
     end

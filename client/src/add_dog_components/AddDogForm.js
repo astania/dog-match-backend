@@ -1,8 +1,9 @@
 import { React, useState } from 'react'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 
 const AddDogForm = ({ user, onAddDog }) => {
+
     const blankDogInput = {
         name: "",
         breed: "",
@@ -12,6 +13,7 @@ const AddDogForm = ({ user, onAddDog }) => {
     }
 
     const [dogInput, setDogInput] = useState(blankDogInput)
+    const [errors, setErrors] = useState([])
 
     const handleChange = (e) => {
         const value = e.target.value
@@ -24,28 +26,30 @@ const AddDogForm = ({ user, onAddDog }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
         fetch("/dogs", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(dogInput),
+            body: JSON.stringify({ ...dogInput, user_id: user.id }),
         })
             .then(res => {
                 if (res.ok) {
                     res.json().then(dogInfo => onAddDog(dogInfo))
                         .then(setDogInput(blankDogInput))
+                        .then(setErrors([]))
                 } else {
-                    // res.json().then( e => setErrors(Object.entries(e.error).flat()))
-                    // res.json().then( e => console.log("Errors:", e))
-                    console.log("error")
+                    res.json().then((errorData) => setErrors(errorData.errors))
                 }
             })
     }
 
+
     return (
 
         <Form onSubmit={handleSubmit}>
+
             <Form.Group className="mb-3 col-4">
                 <Form.Label>Dog Name</Form.Label>
                 <Form.Control type="text" placeholder="Enter name" name="name" value={dogInput.name} onChange={handleChange} />
@@ -57,41 +61,26 @@ const AddDogForm = ({ user, onAddDog }) => {
                 <Form.Label>Profile Pic URL</Form.Label>
                 <Form.Control type="text" placeholder="" name="profile_pic" value={dogInput.profile_pic} onChange={handleChange} />
             </Form.Group>
+
             <Form.Group className="mb-3 col-4" >
                 <Form.Label>About me</Form.Label>
                 <Form.Control as="textarea" rows="4" placeholder="Briefly describe your dog!" name="about_me" value={dogInput.about_me} onChange={handleChange} />
             </Form.Group>
 
+            {errors.length > 0 ?
+                <ul style={{ color: "red" }}>
+                    {errors.map((error) => (
+                        <li key={error}> {error} </li>
+                    ))}
+                </ul>
+                : ""}
+
             <Button variant="primary" type="submit">
                 Add Dog
             </Button>
+
         </Form>
-        // <div >
-        //     <h4>Add a Dog:</h4>
-        //     <form onSubmit={handleSubmit}>
-        //         <div className="form-group">
-        //             <label> Name:
-        //                 <input type="text" name="name" value={dogInput.name} onChange={handleChange} />
-        //             </label>
-        //             <label> Breed:
-        //                 <input type="text" name="breed" value={dogInput.breed} onChange={handleChange} />
-        //             </label>
-        //         </div>
-        //         <div className="form-group">
-        //             <label> Profile Pic URL:
-        //                 <input type="text" name="profile_pic" value={dogInput.profile_pic} onChange={handleChange} />
-        //             </label>
-        //         </div>
-        //         <div className="form-group">
-        //             <label> About Me:
-        //                 <textarea name="about_me" rows="4" cols="50" value={dogInput.about_me} onChange={handleChange}></textarea>
-        //             </label>
-        //         </div>
 
-
-        //         <button className="btn btn-primary" type="submit" value="add_dog">Add Dog</button>
-        //     </form>
-        // </div>
     )
 }
 
