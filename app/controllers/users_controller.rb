@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def show
     find_user
     if @user
-      render json: @user, include: ['dogs', 'dogs.requested_playdates', 'playdates', 'dogs.hosted_playdates', 'dogs.requested_playdates.dog']
+      render json: @user, include: ['dogs', 'dogs.requested_playdates', 'dogs.hosted_playdates']
     else
       render json: { error: "Not authorized" }, status: :unauthorized
     end

@@ -42,22 +42,22 @@ const DogEditForm = ({ dog, onEditDog, setEditDog }) => {
 
         <Form  onSubmit={handleSubmit}>
             <h5>Update {updatedDog.name}'s Profile:</h5>
-        <Form.Group className="col-3 mb-3">
+        <Form.Group className="col-10 mb-3">
           <Form.Label>Name</Form.Label>
           <Form.Control type="text" name="name" value={updatedDog.name} onChange={handleChange}/>
         </Form.Group>
 
-        <Form.Group className="col-3 mb-3">
+        <Form.Group className="col-10 mb-3">
           <Form.Label>Breed</Form.Label>
           <Form.Control type="text" name="breed" value={updatedDog.breed} onChange={handleChange}/>
         </Form.Group>
 
-        <Form.Group className="col-3 mb-3">
+        <Form.Group className="col-10 mb-3">
           <Form.Label>About me</Form.Label>
           <Form.Control type="text" name="about_me" rows="4" cols="50" value={updatedDog.about_me} onChange={handleChange}/>
         </Form.Group>
 
-        <Form.Group className="col-3 mb-3">
+        <Form.Group className="col-10 mb-3">
           <Form.Label>Profile Pic</Form.Label>
           <Form.Control id="profile_pic" type="text" name="profile_pic" value={updatedDog.profile_pic} onChange={handleChange} />
         </Form.Group>

@@ -35,11 +35,22 @@ function App() {
       if (response.ok) {
         response.json().then((userInfo) => setUser(userInfo))
           .then(setLoggedIn(true))
+      } else {
+        console.log("error")
       }
-    });
-  }, []);
+    })
+  }, [])
 
-  // console.log("user", user)
+  useEffect(() => {
+    fetch(`/users/${user.id}`).then((response) => {
+      if (response.ok) {
+        response.json().then((userInfo) => setUser(userInfo))
+          .then(setLoggedIn(true))
+      }
+    })
+  }, [])
+
+  console.log("user", user)
 
   useEffect(() => {
     fetch("/dogs")
@@ -60,6 +71,7 @@ function App() {
   const onLogout = () => {
     setUser(blankUserTemplate)
     setLoggedIn(false)
+    setRequestedDogs([])
   }
 
   const onEditDog = (updatedDog) => {
@@ -76,10 +88,14 @@ function App() {
   }
 
   const onDeleteDog = (id) => {
+    console.log("id:",id)
     const filteredDogs = user.dogs.filter(dog => dog.id !== id)
     const filteredAllDogs = allDogs.filter(dog => dog.id !== id)
-    setUser({ ...user, dogs: filteredDogs })
+   
+    setUser({...user, dogs: filteredDogs})
     setAllDogs(filteredAllDogs)
+    
+   
   }
 
   const onAddRequestedDog = (dog) => {

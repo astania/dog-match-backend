@@ -18,7 +18,7 @@ const PlaydateCard = ({ dog }) => {
       <h6 style={{ color: "#275D69" }}>{dog.name}'s Invited Playdates:</h6>
       <br />
       <div style={{ display: 'flex', flexDirection: 'row' }} >
-        {dog.requested_playdates.length > 0 ? dog.requested_playdates.map((playdate, index) => <InvitedPlaydateCard key={index} playdate={playdate} />) : <p style={{ padding: "5px" }}><em> No Invited Playdates </em></p>}
+        {dog.requested_playdates.length > 0 ? dog.requested_playdates.map((playdate) => <InvitedPlaydateCard key={playdate.id} playdate={playdate} />) : <p style={{ padding: "5px" }}><em> No Invited Playdates </em></p>}
       </div>
       <hr />
     </Container>

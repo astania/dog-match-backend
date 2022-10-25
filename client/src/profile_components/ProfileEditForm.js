@@ -18,7 +18,7 @@ const ProfileEditForm = ({ user, onLogin, setToggleEdit }) => {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(updatedUser)
+        console.log("updated user:",updatedUser)
         fetch(`/users/${updatedUser.id}`, {
             method: "PATCH",
             headers: {
@@ -42,25 +42,25 @@ const ProfileEditForm = ({ user, onLogin, setToggleEdit }) => {
 
     return (
 
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className=" col-10 text-center">
             <h5>Update your Account</h5>
-            <Form.Group className="mb-3" >
+            <Form.Group className="col-5 mb-3" >
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" name="username" value={updatedUser.username} onChange={handleChange} />
             </Form.Group>
-            <Form.Group className="mb-3" >
+            <Form.Group className="col-5 mb-3" >
                 <Form.Label>First Name</Form.Label>
                 <Form.Control type="text" name="first_name" value={updatedUser.first_name} onChange={handleChange} />
             </Form.Group>
-            <Form.Group className="mb-3" >
+            <Form.Group className="col-5 mb-3" >
                 <Form.Label>Last Name</Form.Label>
                 <Form.Control type="text" name="last_name" value={updatedUser.last_name} onChange={handleChange} />
             </Form.Group>
-            <Form.Group className="mb-3" >
+            <Form.Group className="col-5 mb-3" >
                 <Form.Label>Profile Pic URL</Form.Label>
                 <Form.Control type="text" name="profile_pic" value={updatedUser.profile_pic} onChange={handleChange} />
             </Form.Group>
-            <Form.Group className="mb-3" >
+            <Form.Group className="col-5 mb-3" >
                 <Form.Label>About me</Form.Label>
                 <Form.Control as="textarea" rows="4" placeholder="Briefly describe yourself!" name="about_me" value={updatedUser.about_me} onChange={handleChange} />
             </Form.Group>

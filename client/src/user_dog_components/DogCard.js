@@ -9,7 +9,6 @@ const DogCard = ({ dog, onEditDog, onDeleteDog }) => {
     const onClickEditDog = (e) => {
         e.preventDefault()
         setEditDog(true)
-        console.log(editDog)
     }
     const onClickDeleteDog = (e) => {
         e.preventDefault()
