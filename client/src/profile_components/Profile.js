@@ -17,7 +17,7 @@ const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser, onEditDog, on
     }
 
     const handleEditClick = () => {
-        setToggleEdit(!toggleEdit)
+        setToggleEdit(true)
     }
 
     const handleDelete = () => {
@@ -30,15 +30,19 @@ const Profile = ({ user, onLogout, setUser, onLogin, onDeleteUser, onEditDog, on
         return (
             <Container>
                 <div className="text-center">
-                    <img src={user.profile_pic} alt="profile" height="200" />
-                    <h3>{user.first_name} {user.last_name}</h3>
-                    <h5>Bio:</h5>
-                    <p>{user.about_me}</p>
-                    <Button className="btn btn-primary mb-3" onClick={handleEditClick}>{toggleEdit ? "x" : "edit profile"}</Button>
-                    <Button className="btn btn-secondary mb-3" onClick={handleLogout}>Logout</Button>
-                    <br></br>
-                    <Button className="btn btn-secondary mb-3" onClick={handleDelete}>Delete Profile</Button>
-                    {toggleEdit ? <ProfileEditForm user={user} setUser={setUser} onLogin={onLogin} setToggleEdit={setToggleEdit} /> : ""}
+                    
+                    {toggleEdit ? <ProfileEditForm user={user} setUser={setUser} onLogin={onLogin} setToggleEdit={setToggleEdit} /> :
+                        <div>
+                            <img src={user.profile_pic} alt="profile" height="200" />
+                            <h3>{user.first_name} {user.last_name}</h3>
+                            <h5>Bio:</h5>
+                            <p>{user.about_me}</p>
+                            <Button className="btn btn-primary mb-3" onClick={handleEditClick}>edit profile</Button>
+                            <Button className="btn btn-secondary mb-3" onClick={handleLogout}>Logout</Button>
+                            <br />
+                            <Button className="btn btn-secondary mb-3" onClick={handleDelete}>Delete Profile</Button>
+                        </div>
+                    }
                     <h5>My Dogs:</h5>
                     <DogContainer dogs={user.dogs} onEditDog={onEditDog} onDeleteDog={onDeleteDog} />
 

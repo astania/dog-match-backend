@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def update 
     find_user
     if @user&.update(user_params) 
-      render json: @user 
+      render json: @user, include: ['dogs', 'dogs.requested_playdates', 'dogs.hosted_playdates'] 
     else 
       render json: {error: "User not found"}, status: :not_found
     end 

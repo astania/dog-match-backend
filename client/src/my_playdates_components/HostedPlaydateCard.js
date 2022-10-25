@@ -15,21 +15,17 @@ const HostedPlaydateCard = ({ playdate }) => {
                     <Card.Title>{playdate.date}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{playdate.time}</Card.Subtitle>
                     <Card.Text >
-                        
-                            <b>Details:</b>
-                            <br></br>
-                            {playdate.notes}
-                            <br></br>
-                            <b>Who Else is Coming:</b>
-                            <br></br>
-                        
-                        {/* <div style={{ display: 'flex', flexDirection: 'row' }}> */}
+                        <div>
+                            <p><b>Details:</b></p>
+                            <p>{playdate.notes}</p>
+                            <p><b>Who Else is Coming:</b></p>
+                        </div>
+
                         <CardGroup>
                             <Row xs={1} md={2} className="g-1">
                                 {playdate.invited_dogs.map(dog => <Col sm='1' key={dog.id} > <InvitedDogCard dog={dog} /> </Col>)}
                             </Row>
                         </CardGroup>
-                        {/* </div> */}
                     </Card.Text>
                 </Card.Body>
             </Card>

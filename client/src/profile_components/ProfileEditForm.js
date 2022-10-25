@@ -18,7 +18,7 @@ const ProfileEditForm = ({ user, onLogin, setToggleEdit }) => {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log("updated user:",updatedUser)
+        // console.log("updated user:",updatedUser)
         fetch(`/users/${updatedUser.id}`, {
             method: "PATCH",
             headers: {

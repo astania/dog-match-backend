@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row';
 const InvitedPlaydateCard = ({ playdate }) => {
 
 
-// console.log("playdate",playdate)
+    // console.log("playdate",playdate)
 
     return (
         <Container>
@@ -18,19 +18,20 @@ const InvitedPlaydateCard = ({ playdate }) => {
                     <Card.Title>{playdate.date}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{playdate.time}</Card.Subtitle>
                     <Card.Text >
-                        <b>Hosted by:</b>
-                        <InvitedDogCard dog={playdate.host_dog} />
-                        <br></br>
-                        <p><b>Details:</b></p>
-                        <p>{playdate.notes}</p>
-                        <p><b>Who Else is Coming:</b></p>
-                       
+                        <div>
+                            <b>Hosted by:</b>
+                            <InvitedDogCard dog={playdate.host_dog} />
+                            
+                            <p><b>Details:</b></p>
+                            <p>{playdate.notes}</p>
+                            <p><b>Who Else is Coming:</b></p>
+                        </div>
                         <CardGroup>
-                            {/* <div style={{ display: 'flex', flexDirection: 'row' }}> */}
+                            
                             <Row xs={1} md={2} className="g-3">
-                                {playdate.invited_dogs.map((dog) => <Col sm='3' key={dog.id}> <InvitedDogCard dog={dog} /> </Col>) }
+                                {playdate.invited_dogs.map((dog) => <Col sm='3' key={dog.id}> <InvitedDogCard dog={dog} /> </Col>)}
                             </Row>
-                            {/* </div> */}
+                            
                         </CardGroup>
 
                     </Card.Text>
