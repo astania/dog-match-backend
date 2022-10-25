@@ -29,6 +29,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [allDogs, setAllDogs] = useState([])
   const [requestedDogs, setRequestedDogs] = useState([])
+  
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -36,17 +37,30 @@ function App() {
         response.json().then((userInfo) => setUser(userInfo))
           .then(setLoggedIn(true))
       } else {
-        console.log("error")
+        // response.json().then((errorData) => setErrors(errorData.errors))
+        // // console.log(response)
       }
     })
   }, [])
 
-  // console.log("user", user)
+  console.log("user", user)
+  
+
+  // useEffect(() => {
+  //   fetch("/dogs")
+  //     .then(r => r.json())
+  //     .then(fetchedDogs => setAllDogs(fetchedDogs))
+  // }, [])
 
   useEffect(() => {
-    fetch("/dogs")
-      .then(r => r.json())
-      .then(fetchedDogs => setAllDogs(fetchedDogs))
+    fetch("/dogs").then((response) => {
+      if (response.ok) {
+        response.json().then((fetchedDogs) => setAllDogs(fetchedDogs))
+      } else {
+        // response.json().then((errorData) => setErrors(errorData.errors))
+        // console.log(response)
+      }
+    })
   }, [])
 
   const onLogin = (userInfo) => {

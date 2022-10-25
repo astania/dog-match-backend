@@ -1,6 +1,8 @@
-import React from 'react'
+import {React, useState} from 'react'
 
 const LoginForm = ({ onLogin, setIsNewUser, user, setUser }) => {
+
+    const [errors, setErrors] = useState([])
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -16,9 +18,7 @@ const LoginForm = ({ onLogin, setIsNewUser, user, setUser }) => {
                 if (res.ok) {
                     res.json().then(userInfo => onLogin(userInfo))
                 } else {
-                    // res.json().then( e => setErrors(Object.entries(e.error).flat()))
-                    // res.json().then( e => console.log("Errors:", e))
-                    console.log("error")
+                    res.json().then((errorData) => setErrors(errorData.errors))
                 }
             })
     }
@@ -47,12 +47,20 @@ const LoginForm = ({ onLogin, setIsNewUser, user, setUser }) => {
 
                 <div className="form-group mb-1">
                     <label> Password
-                        <input className="form-control" type="password" name="password" placeholder="*****" value={user.password} onChange={handleChange} />
+                        <input className="form-control" type="password" name="password" placeholder="*******" value={user.password} onChange={handleChange} />
                     </label>
                 </div>
 
+                {errors.length > 0 ? 
+                    <div style={{ color: "red" }}>
+                        {errors.map((error) => (
+                            <em key={error}> {error} </em>
+                        ))}
+                    </div> 
+                : ""}
+
                 <button className="btn btn-primary" type="submit" value="Login">Login</button>
-                
+
             </form>
             <h4 className="mb-4">Are you new here? Create an account below:</h4>
             <button className="btn btn-secondary" onClick={() => setIsNewUser(true)}>Create Account</button>

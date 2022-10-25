@@ -1,14 +1,17 @@
 class UsersController < ApplicationController
   wrap_parameters format: []
   # skip_before_action :authorized, only: :create
-  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+  # rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
   def create
-    user = User.create(user_params)
-    if user.valid?
+    user = User.create!(user_params)
+    user.valid?
       session[:user_id] = user.id
       render json: user, status: :created
-    end
+
+    rescue ActiveRecord::RecordInvalid => e
+      render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
+
   end
   
   def show
@@ -49,9 +52,9 @@ class UsersController < ApplicationController
   end 
   
 
-  def render_unprocessable_entity(invalid)
-    render json: {error: invalid.record.errors}, status: :unprocessable_entity
-  end 
+  # def render_unprocessable_entity(e)
+  #   render json: {errors: e.record.errors.full_messages}, status: :unprocessable_entity
+  # end 
 
 
 end

@@ -9,7 +9,7 @@ class DogsController < ApplicationController
   end 
   
   def create
-    dog = Dog.create(dog_params)
+    dog = Dog.create!(dog_params)
     if dog.valid?
       render json: dog, status: :created
     end
@@ -53,7 +53,7 @@ class DogsController < ApplicationController
   end 
 
   def render_unprocessable_entity(invalid)
-    render json: {error: invalid.record.errors}, status: :unprocessable_entity
+    render json: {errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end 
 
 end
