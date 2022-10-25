@@ -41,16 +41,7 @@ function App() {
     })
   }, [])
 
-  useEffect(() => {
-    fetch(`/users/${user.id}`).then((response) => {
-      if (response.ok) {
-        response.json().then((userInfo) => setUser(userInfo))
-          .then(setLoggedIn(true))
-      }
-    })
-  }, [])
-
-  console.log("user", user)
+  // console.log("user", user)
 
   useEffect(() => {
     fetch("/dogs")
@@ -109,12 +100,12 @@ function App() {
   }
 
   const onRequestPlaydate = (playdate) => {
-    const updatedUser = { ...user }
+    // const updatedUser = { ...user }
     const hostDog = user.dogs.find(dog => dog.id == playdate.host_dog.id)
     hostDog.hosted_playdates = [...hostDog.hosted_playdates, playdate]
     const updatedDogs = user.dogs.map(dog => dog.id == hostDog.id ? hostDog : dog)
-    updatedUser.dogs = updatedDogs
-    setUser(updatedUser)
+    // updatedUser.dogs = updatedDogs
+    setUser({...user, dogs: updatedDogs})
 
   }
 
@@ -134,7 +125,7 @@ function App() {
         <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs} user={user} onAddRequestedDog={onAddRequestedDog} onRemoveRequestedDog={onRemoveRequestedDog} requestedDogs={requestedDogs} />} />
         <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser} onEditDog={onEditDog} onDeleteDog={onDeleteDog} />} />
         <Route exact path="/adddog" element={<AddDogContainer user={user} onAddDog={onAddDog} />} />
-        <Route exact path="/playdates" element={<PlaydatesContainer user={user} requestedDogs={requestedDogs} onRemoveRequestedDog={onRemoveRequestedDog} onRequestPlaydate={onRequestPlaydate} />} />
+        <Route exact path="/playdates" element={<PlaydatesContainer user={user} requestedDogs={requestedDogs} setRequestedDogs={setRequestedDogs} onRemoveRequestedDog={onRemoveRequestedDog} onRequestPlaydate={onRequestPlaydate} />} />
         <Route exact path="/myplaydates" element={<MyPlaydatesContainer user={user} />} />
       </Routes>
       <Footer />

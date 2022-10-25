@@ -1,11 +1,10 @@
 import { React, useState } from 'react'
 import MiniDogCard from './MiniDogCard'
 import Container from 'react-bootstrap/Container';
-import CardGroup from 'react-bootstrap/CardGroup';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-const PlaydatesContainer = ({ user, requestedDogs, onRemoveRequestedDog, onRequestPlaydate }) => {
+const PlaydatesContainer = ({ user, requestedDogs, setRequestedDogs, onRemoveRequestedDog, onRequestPlaydate }) => {
   const requestedDogIds = requestedDogs.map(dog => dog.id)
   const blankPlaydateInput = {
     date: "",
@@ -42,6 +41,8 @@ const PlaydatesContainer = ({ user, requestedDogs, onRemoveRequestedDog, onReque
       .then(res => {
         if (res.ok) {
           res.json().then(playdateInfo => onRequestPlaydate(playdateInfo))
+          .then(setPlaydateRequest(blankPlaydateInput))
+          .then(setRequestedDogs([]))
         }
       })
   }
@@ -68,9 +69,13 @@ const PlaydatesContainer = ({ user, requestedDogs, onRemoveRequestedDog, onReque
               <input type="text" className="form-control mb-2" name="time" value={playdateRequest.time} onChange={handleChange} placeholder="3:30pm" />
             </label>
           </div>
-          {requestedDogs.length > 0 ? <CardGroup> <Row xs={1} md={2} className="g-4"><label>Requested Dogs
+          {requestedDogs.length > 0 ? 
+          <label>Requested Dogs: 
+            <Row xs={1} md={2} className="g-3">
             {requestedDogs.map((dog, index) => <Col sm='3'key={dog.id} ><MiniDogCard dog={dog} index={index} onRemoveRequestedDog={onRemoveRequestedDog} /></Col>)}
-          </label></Row> </CardGroup>: <b className="mb-2" style={{color: "blue"}}><em> Go to the Dogs tab to add some playmates!</em></b>}
+          </Row> 
+          </label>
+          : <b className="mb-2" style={{color: "blue"}}><em> Go to the Dogs tab to add some playmates!</em></b>}
           <div className="form-group">
             <label >Notes:</label>
             <textarea className="form-control mb-2" name="notes" value={playdateRequest.notes} onChange={handleChange} rows="3" placeholder="Describe what you would like to do! Any likes/dislikes?"></textarea>
