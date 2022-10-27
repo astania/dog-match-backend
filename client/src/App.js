@@ -79,7 +79,6 @@ function App() {
   }
 
   const onDeleteDog = (id) => {
-    console.log("id:", id)
     const filteredDogs = user.dogs.filter(dog => dog.id !== id)
     const filteredAllDogs = allDogs.filter(dog => dog.id !== id)
 

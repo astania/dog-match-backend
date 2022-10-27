@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   resources :dogs, only: [:create, :show, :index, :destroy, :update]
 
-  resources :users, only: [:create, :destroy, :update]
+  resources :users, only: [:create, :destroy, :update, :show]
 
   post '/login', to: 'sessions#create'
 

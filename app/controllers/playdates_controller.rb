@@ -3,10 +3,10 @@ class PlaydatesController < ApplicationController
     # skip_before_action :authorized, only: :create
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   
-    def index 
-      playdates = Playdate.all 
-      render json: playdates, include: [:dogs]
-    end 
+    # def index 
+    #   playdates = Playdate.all 
+    #   render json: playdates
+    # end 
     
     def create
       playdate = Playdate.create!(playdate_params)
@@ -16,19 +16,19 @@ class PlaydatesController < ApplicationController
       end
     end
     
-    def show
-      find_playdate
-      if @playdate
-        render json: @playdate
-      end
-    end
+    # def show
+    #   find_playdate
+    #   if @playdate
+    #     render json: @playdate
+    #   end
+    # end
   
-    def update 
-      find_playdate
-      if @playdate&.update!(playdate_params) 
-        render json: @playdate, include: :dogs
-      end 
-    end 
+    # def update 
+    #   find_playdate
+    #   if @playdate&.update!(playdate_params) 
+    #     render json: @playdate
+    #   end 
+    # end 
   
     def destroy 
       find_playdate
