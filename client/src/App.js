@@ -40,8 +40,6 @@ function App() {
     })
   }, [])
 
-  console.log("user", user)
-
 
   useEffect(() => {
     fetch("/dogs").then((response) => {
@@ -87,25 +85,20 @@ function App() {
 
     setUser({ ...user, dogs: filteredDogs })
     setAllDogs(filteredAllDogs)
-
-
   }
 
   const onAddRequestedDog = (dog) => {
     const requestedDogIds = requestedDogs.map(dog => dog.id)
-    console.log("requested dog ids:", requestedDogIds)
     if (!requestedDogIds.includes(dog.id)) {
       setRequestedDogs([...requestedDogs, dog])
-    } else {
-      console.log("oops! dog already added")
-    }
+    } 
   }
 
   const onRequestPlaydate = (playdate) => {
     const hostDog = user.dogs.find(dog => dog.id == playdate.host_dog.id)
     hostDog.hosted_playdates = [...hostDog.hosted_playdates, playdate]
     const updatedDogs = user.dogs.map(dog => dog.id == hostDog.id ? hostDog : dog)
-  
+    
     setUser({ ...user, dogs: updatedDogs })
 
   }

@@ -3,6 +3,9 @@ import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container';
 
 const InvitedDogCard = ({ dog }) => {
+    // console.log("dog", dog)
+
+    // console.log("profile pic",dog.profile_pic)
     
     return (
         <Container>
