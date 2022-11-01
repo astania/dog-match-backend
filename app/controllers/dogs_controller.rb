@@ -51,4 +51,8 @@ class DogsController < ApplicationController
     render json: {errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end 
 
+  def render_not_found_response(invalid)
+    render json: {errors: invalid.record.errors.full_messages }, status: :not_found
+  end 
+
 end

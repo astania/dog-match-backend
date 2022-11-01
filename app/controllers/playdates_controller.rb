@@ -4,10 +4,6 @@ class PlaydatesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   
-    # def index 
-    #   playdates = Playdate.all 
-    #   render json: playdates
-    # end 
     
     def create
       playdate = Playdate.create!(playdate_params)
@@ -16,27 +12,11 @@ class PlaydatesController < ApplicationController
         render json: playdate
       end
     end
-    
-    # def show
-    #   find_playdate
-    #   if @playdate
-    #     render json: @playdate
-    #   end
-    # end
-  
-    # def update 
-    #   find_playdate
-    #   if @playdate&.update!(playdate_params) 
-    #     render json: @playdate
-    #   end 
-    # end 
   
     def destroy 
       find_playdate
       if @playdate&.destroy 
         render json: {messages: "Record successfully destroyed"}
-      else 
-        render json: {error: "Playdate not found"}, status: :not_found
       end 
     end 
   
@@ -52,6 +32,10 @@ class PlaydatesController < ApplicationController
   
     def render_unprocessable_entity(invalid)
       render json: {errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+    end 
+
+    def render_not_found_response(invalid)
+      render json: {errors: invalid.record.errors.full_messages }, status: :not_found
     end 
 
 end
