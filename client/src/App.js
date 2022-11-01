@@ -115,9 +115,9 @@ function App() {
       <Routes>
         <Route exact path="/" element={!!loggedIn ? <WelcomePage user={user} /> : <Login user={user} setUser={setUser} onLogin={onLogin} />} />
         <Route exact path="/login" element={<Login onLogin={onLogin} />} />
-        <Route exact path="/alldogs" element={<AllDogsContainer allDogs={allDogs} user={user} onAddRequestedDog={onAddRequestedDog} onRemoveRequestedDog={onRemoveRequestedDog} requestedDogs={requestedDogs} />} />
+        <Route exact path="/dogs" element={<AllDogsContainer allDogs={allDogs} user={user} onAddRequestedDog={onAddRequestedDog} onRemoveRequestedDog={onRemoveRequestedDog} requestedDogs={requestedDogs} />} />
         <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser} onEditDog={onEditDog} onDeleteDog={onDeleteDog} />} />
-        <Route exact path="/adddog" element={<AddDogContainer user={user} onAddDog={onAddDog} />} />
+        <Route exact path="/dogs/new" element={<AddDogContainer user={user} onAddDog={onAddDog} />} />
         <Route exact path="/playdates" element={<PlaydatesContainer user={user} requestedDogs={requestedDogs} setRequestedDogs={setRequestedDogs} onRemoveRequestedDog={onRemoveRequestedDog} onRequestPlaydate={onRequestPlaydate} />} />
         <Route exact path="/myplaydates" element={<MyPlaydatesContainer user={user} />} />
       </Routes>

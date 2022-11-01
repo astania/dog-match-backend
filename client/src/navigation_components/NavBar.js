@@ -14,10 +14,10 @@ const NavBar = () => {
                     <Navbar.Brand as={Link} to="/">DogMatch</Navbar.Brand>
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
-                        <Nav.Link as={Link} to="/alldogs">Find Playmates</Nav.Link>
+                        <Nav.Link as={Link} to="/dogs">Find Playmates</Nav.Link>
                         <Nav.Link as={Link} to="/playdates">Playdate Request Form</Nav.Link>
                         <Nav.Link as={Link} to="/myplaydates">My Playdates</Nav.Link>
-                        <Nav.Link as={Link} to="/adddog">Add Dogs</Nav.Link>
+                        <Nav.Link as={Link} to="/dogs/new">Add Dogs</Nav.Link>
                         <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                     </Nav>
                 </Container>

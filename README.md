@@ -22,7 +22,9 @@ Clone the repo - In your terminal type (ensuring to add your github username):  
 
 Open the cloned project in your preferred code editor and open a terminal
 
-CD into the dog-match folder and run rails s 
+CD into the dog-match folder and run npm install --prefix client
+then run bundle install
+Open a new terminal and run run rails s 
 Open a new terminal and run rails db:seed 
 Open a new terminal and run npm start --prefix client 
 
