@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :playdates, only: [:create, :destroy]
   
-  resources :dogs
+  resources :dogs, only: [:create, :destroy, :update, :index]
 
   resources :users, only: [:create, :destroy, :update, :show]
 

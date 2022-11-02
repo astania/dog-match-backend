@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     end
   end
   
+  # GET '/me'
   def show
     find_user
     if @user
@@ -48,5 +49,8 @@ class UsersController < ApplicationController
     render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
   end 
 
+  def render_not_found_response(invalid)
+    render json: {errors: invalid.record.errors.full_messages }, status: :not_found
+  end 
 
 end
