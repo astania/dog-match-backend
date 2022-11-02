@@ -32,6 +32,7 @@ function App() {
 
 
   useEffect(() => {
+    //to users#show
     fetch("/me").then((response) => {
       if (response.ok) {
         response.json().then((userInfo) => setUser(userInfo))

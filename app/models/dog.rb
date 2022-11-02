@@ -5,6 +5,10 @@ class Dog < ApplicationRecord
     has_many :hosted_playdates, :foreign_key => "dog_id", :class_name => "Playdate"
 
     validates :name, :breed, :user_id, :profile_pic, :about_me, presence: true 
+
+    # def self.by_user
+    #     Dog.order(:user_id)
+    # end 
 end
 
 
