@@ -33,8 +33,6 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
 
     function handleSubmit(e) {
         e.preventDefault()
-        // if (userInput.password === confirmPassword) {
-        //     setPasswordDoesNotMatch(false)
         fetch("/users", {
             method: "POST",
             headers: {
@@ -49,10 +47,6 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
                     res.json().then((errorData) => setErrors(errorData.errors))
                 }
             })
-
-        // }  else {
-        //     setPasswordDoesNotMatch(true)
-        // }
     }
 
     return (
@@ -72,14 +66,8 @@ const SignUpForm = ({ setIsNewUser, onLogin }) => {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" name="password" value={userInput.password} onChange={handleChange} placeholder="*****" />
                         </Form.Group>
-
-                        {/* <Form.Group as={Col} >
-                            <Form.Label>Confirm Password</Form.Label>
-                            <Form.Control type="password" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                        </Form.Group> */}
                     </Row>
 
-                    {/* {passwordDoesNotMatch ? <b><em>password must match</em></b> : ""} */}
                     <Row className="mb-3">
                         <Form.Group as={Col} >
                             <Form.Label>First Name</Form.Label>

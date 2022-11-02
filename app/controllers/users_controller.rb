@@ -43,7 +43,6 @@ class UsersController < ApplicationController
     params.permit(:username, :password, :first_name, :last_name, :about_me, :profile_pic)
   end 
   
-
   def render_unprocessable_entity(invalid)
     render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
   end 

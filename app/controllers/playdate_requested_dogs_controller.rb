@@ -3,11 +3,6 @@ class PlaydateRequestedDogsController < ApplicationController
     skip_before_action :authorized, only: :create
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
-  
-    def index 
-      playdate_requested_dogs = PlaydateRequestedDog.all 
-      render json: playdate_requested_dogs
-    end 
     
     def create
       playdate_requested_dog = PlaydateRequestedDog.create!(playdate_requested_dog_params)
@@ -15,20 +10,6 @@ class PlaydateRequestedDogsController < ApplicationController
         render json: playdate_requested_dog, status: :created
       end
     end
-    
-    def show
-      find_playdate_requested_dog
-      if @playdate_requested_dog
-        render json: @playdate_requested_dog
-      end
-    end
-  
-    def update 
-      find_playdate_requested_dog
-      if @playdate_requested_dog&.update!(playdate_requested_dog_params) 
-        render json: @playdate_requested_dog
-      end 
-    end 
   
     def destroy 
       find_playdate_requested_dog

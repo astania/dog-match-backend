@@ -7,6 +7,7 @@ const LoginForm = ({ onLogin, setIsNewUser, user, setUser }) => {
     function handleSubmit(e) {
         e.preventDefault()
 
+        //to sessions#create
         fetch("/login", {
             method: "POST",
             headers: {
