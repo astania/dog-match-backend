@@ -91,14 +91,14 @@ function App() {
     const requestedDogIds = requestedDogs.map(dog => dog.id)
     if (!requestedDogIds.includes(dog.id)) {
       setRequestedDogs([...requestedDogs, dog])
-    } 
+    }
   }
 
   const onRequestPlaydate = (playdate) => {
     const hostDog = user.dogs.find(dog => dog.id == playdate.host_dog.id)
     hostDog.hosted_playdates = [...hostDog.hosted_playdates, playdate]
     const updatedDogs = user.dogs.map(dog => dog.id == hostDog.id ? hostDog : dog)
-    
+
     setUser({ ...user, dogs: updatedDogs })
 
   }
@@ -120,7 +120,7 @@ function App() {
         <Route exact path="/profile" element={<Profile user={user} onLogout={onLogout} setUser={setUser} onLogin={onLogin} onDeleteUser={onDeleteUser} onEditDog={onEditDog} onDeleteDog={onDeleteDog} />} />
         <Route exact path="/dogs/new" element={<AddDogContainer user={user} onAddDog={onAddDog} />} />
         <Route exact path="/playdates" element={<PlaydatesContainer user={user} requestedDogs={requestedDogs} setRequestedDogs={setRequestedDogs} onRemoveRequestedDog={onRemoveRequestedDog} onRequestPlaydate={onRequestPlaydate} />} />
-        <Route exact path="/myplaydates" element={<MyPlaydatesContainer user={user} />} />
+        <Route exact path="/my-playdates" element={<MyPlaydatesContainer user={user} />} />
       </Routes>
       <Footer />
     </BrowserRouter>

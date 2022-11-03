@@ -6,9 +6,6 @@ class Dog < ApplicationRecord
 
     validates :name, :breed, :user_id, :profile_pic, :about_me, presence: true 
 
-    # def self.by_user
-    #     Dog.order(:user_id)
-    # end 
 end
 
 
